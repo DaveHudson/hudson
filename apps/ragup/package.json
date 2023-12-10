@@ -1,0 +1,24 @@
+{
+  "name": "ragup",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --loader ts-node/esm ./index.ts",
+    "build": "echo 'Add build script here'",
+    "test": "echo 'Add test script here'",
+    "lint": "echo 'Add lint script here'"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/eslint": "^8.44.7",
+    "@types/node": "^17.0.12",
+    "eslint": "^8.53.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "langchain": "^0.0.203"
+  }
+}
