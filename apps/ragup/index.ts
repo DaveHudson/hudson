@@ -41,5 +41,3 @@ docs.forEach(async (doc) => {
     console.error(err);
   }
 });
-
-/* Crawl Applification Blog for content and insert */
