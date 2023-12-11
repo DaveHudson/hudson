@@ -5,7 +5,7 @@ import Messages from "@repo/ui/messages";
 
 export default function Chat(): React.ReactNode {
   const { input, handleInputChange, handleSubmit, messages } = useChat({
-    api: "/api/rag",
+    api: "/api/chat",
   });
 
   return (
