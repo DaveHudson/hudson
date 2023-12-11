@@ -10,8 +10,6 @@
     "lint": "echo 'Add lint script here'"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
     "@types/eslint": "^8.44.7",
     "@types/node": "^17.0.12",
     "eslint": "^8.53.0",

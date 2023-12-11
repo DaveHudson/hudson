@@ -2,14 +2,6 @@
 
 Looks for Markdown documents in `/docs` directory. Chunks the files and uploads do Supabase Vector Store.
 
-## Manage packages
-
-`pnpm add {package-name} --filter ragup`
-
-## Development
-
-`npx turbo dev --filter ragup`
-
 ## RAG
 
 This project uses Supabase with the vector extension to store RAG data, paired with LangChain to chunk & upload the documents to the vector databse.

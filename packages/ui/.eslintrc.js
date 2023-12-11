@@ -1,9 +1,8 @@
-/** @type {import("eslint").Linter.Config} */
 module.exports = {
-  root: true,
-  extends: ["@repo/eslint-config/react-internal.js"],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    project: "./tsconfig.lint.json",
-  },
+  extends: ["@repo/eslint-config/react.js"],
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "no-console": "off",
+  }
 };
