@@ -10,3 +10,11 @@ For more details, see the docs:
 
 - [https://js.langchain.com/docs/integrations/vectorstores/supabase](https://js.langchain.com/docs/integrations/vectorstores/supabase)
 - [https://scrimba.com/learn/langchain/supabase-setup-cocb84fce96a85fb50de02772](https://scrimba.com/learn/langchain/supabase-setup-cocb84fce96a85fb50de02772)
+
+### Adding Markdown documents
+
+`node --loader ts-node/esm ./index.ts`
+
+### Adding blog posts
+
+`node --loader ts-node/esm ./blog.ts`

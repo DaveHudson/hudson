@@ -10,6 +10,11 @@ const sbApiKey = process.env.SUPABASE_API_KEY as string;
 const sbUrl = process.env.SUPABASE_URL as string;
 const openAIApiKey = process.env.OPENAI_API_KEY as string;
 
+if (!sbApiKey || !sbUrl || !openAIApiKey) {
+  console.error("Environment variables not set");
+  process.exit(1);
+}
+
 const loader = new DirectoryLoader("./docs", {
   ".md": (path) => new TextLoader(path),
 });
@@ -20,12 +25,12 @@ console.log("num docs", docs.length);
 const client = createClient(sbUrl, sbApiKey);
 
 // For each document in docs, split into chunks useing RecursivieCharacterTextSplitter from LangChain
-docs.forEach(async (doc) => {
+for (const doc of docs) {
   try {
     let text = doc.pageContent;
-    const splitter = new RecursiveCharacterTextSplitter({
+    const splitter = RecursiveCharacterTextSplitter.fromLanguage("markdown", {
       chunkSize: 500,
-      separators: ["\n\n", "\n", " ", "", "##"], // default setting (## popular in markdown)
+      // separators: ["\n\n", "\n", " ", "", "##"], // default setting (## popular in markdown)
       chunkOverlap: 50,
     });
 
@@ -40,4 +45,4 @@ docs.forEach(async (doc) => {
   } catch (err) {
     console.error(err);
   }
-});
+}
