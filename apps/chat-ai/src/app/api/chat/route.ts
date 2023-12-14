@@ -2,12 +2,13 @@ import type { NextRequest } from "next/server";
 import type { Message as VercelChatMessage } from "ai";
 import { StreamingTextResponse } from "ai";
 import { ChatOpenAI } from "langchain/chat_models/openai";
-import { BytesOutputParser } from "langchain/schema/output_parser";
+import { BytesOutputParser, StringOutputParser } from "langchain/schema/output_parser";
 import { PromptTemplate } from "langchain/prompts";
 import invariant from "tiny-invariant";
 import { createClient } from "@supabase/supabase-js";
 import { SupabaseVectorStore } from "langchain/vectorstores/supabase";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { RunnableSequence } from "langchain/runnables";
 
 export const runtime = "edge";
 const rateLimitWindow = 60 * 60 * 1000; // 1 hour
@@ -21,20 +22,9 @@ const formatMessage = (message: VercelChatMessage) => {
   return `${message.role}: ${message.content}`;
 };
 
-const TEMPLATE = `You are an AI designed to emulate the thoughts and views of Dave Hudson. Your responses should be in the first person, as if Dave himself is speaking. Use phrases like "In my view..." or "I believe...". 
-
-Your responses should be based solely on the context provided, which includes Dave's blog posts and his thoughts on various topics. If a question is asked that cannot be answered based on the context, respond with "I'm sorry, I don't have any views on that topic yet. Please feel free to email me at dave@applification.net for further discussion."
-
-Remember, your goal is to provide a conversational experience that is as close as possible to a real conversation with Dave. Do not invent or assume any views that are not explicitly stated in the context.
-
-Current conversation:
-{chat_history}
-
-Context: {context}
-
-User: {input}
-
-AI: `;
+export function combineDocuments(docs) {
+  return docs.map((doc) => doc.pageContent).join("\n\n");
+}
 
 /*
  * This handler initializes and calls a simple chain with a prompt,
@@ -43,6 +33,15 @@ AI: `;
  * https://js.langchain.com/docs/guides/expression_language/cookbook#prompttemplate--llm--outputparser
  */
 export async function POST(req: NextRequest) {
+  /**
+   * See a full list of supported models at:
+   * https://js.langchain.com/docs/modules/model_io/models/
+   */
+  const model = new ChatOpenAI({
+    temperature: 0.3,
+    // modelName: "gpt-4",
+  });
+
   const now = Date.now();
   const ip = req.headers["x-forwarded-for"] || req.headers["x-real-ip"];
 
@@ -50,7 +49,7 @@ export async function POST(req: NextRequest) {
   timestamps.push(now);
 
   // Only keep timestamps within the current rate limit window
-  const recentTimestamps = timestamps.filter((timestamp) => now - timestamp < rateLimitWindow);
+  const recentTimestamps = timestamps.filter((timestamp: number) => now - timestamp < rateLimitWindow);
 
   requestTimestamps.set(ip, recentTimestamps);
 
@@ -64,14 +63,37 @@ export async function POST(req: NextRequest) {
   const formattedPreviousMessages = messages.slice(0, -1).map(formatMessage);
   const currentMessageContent = messages[messages.length - 1].content;
 
-  const prompt = PromptTemplate.fromTemplate(TEMPLATE);
-  /**
-   * See a full list of supported models at:
-   * https://js.langchain.com/docs/modules/model_io/models/
-   */
-  const model = new ChatOpenAI({
-    temperature: 0.3,
+  // Convert to question chain
+  const standaloneQuestionTemplate =
+    "Given a question, convert it to a standalone question. question: {question} standalone question:";
+  const standaloneQuestionPrompt = PromptTemplate.fromTemplate(standaloneQuestionTemplate);
+
+  const standaloneQuestionChain = RunnableSequence.from([standaloneQuestionPrompt, model, new StringOutputParser()]);
+
+  const standaldoneQuestionResult = await standaloneQuestionChain.invoke({
+    question: currentMessageContent,
   });
+  // console.log("standaloneQuestionResult", standaldoneQuestionResult);
+
+  // RAG
+  const answerTemplate = `You are an AI designed to emulate the thoughts and views of Dave Hudson. Your responses should be in the first person, as if Dave himself is speaking. Use phrases like "In my view..." or "I believe...". 
+
+  Your responses should be based solely on the context provided, which includes Dave's blog posts and his thoughts on various topics. If a question is asked that cannot be answered based on the context, respond with "I'm sorry, I don't have any views on that topic yet. Please feel free to email me at dave@applification.net for further discussion."
+  
+  Remember, your goal is to provide a conversational experience that is as close as possible to a real conversation with Dave. Do not invent or assume any views that are not explicitly stated in the context.
+  
+  Current conversation:
+  {chat_history}
+  
+  Context: {context}
+  
+  question: {question}
+  
+  answer: `;
+
+  // const answerPrompt = PromptTemplate.fromTemplate(answerTemplate);
+
+  const prompt = PromptTemplate.fromTemplate(answerTemplate);
 
   /**
    * Chat models stream message chunks rather than bytes, so this
@@ -90,15 +112,16 @@ export async function POST(req: NextRequest) {
     queryName: "match_documents",
   });
 
-  const context = await vectorStore.similaritySearch(currentMessageContent, 1);
+  const context = await vectorStore.similaritySearch(standaldoneQuestionResult, 5);
   // console.log(context);
 
-  const chain = prompt.pipe(model).pipe(outputParser);
+  const chain = RunnableSequence.from([prompt, model, outputParser]);
 
   const stream = await chain.stream({
     chat_history: formattedPreviousMessages.join("\n"),
-    context: context[0].pageContent,
-    input: currentMessageContent,
+    // context: context[0].pageContent,
+    context: combineDocuments(context),
+    question: standaldoneQuestionResult,
   });
 
   return new StreamingTextResponse(stream);
