@@ -1,23 +1,22 @@
 import type { NextRequest } from "next/server";
-import type { Message as VercelChatMessage } from "ai";
+import { StreamingTextResponse, type Message as VercelChatMessage } from "ai";
 import { ChatOpenAI } from "langchain/chat_models/openai";
-import { StringOutputParser } from "langchain/schema/output_parser";
 import { PromptTemplate } from "langchain/prompts";
 import invariant from "tiny-invariant";
 import { createClient } from "@supabase/supabase-js";
 import { SupabaseVectorStore } from "langchain/vectorstores/supabase";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { RunnableSequence } from "langchain/runnables";
-import { HttpResponseOutputParser } from "langchain/output_parsers";
+import { HttpResponseOutputParser, StructuredOutputParser } from "langchain/output_parsers";
+import { z } from "zod";
+
+export type Answer = {
+  message: VercelChatMessage;
+  source: string;
+};
 
 export const runtime = "edge";
-const rateLimitWindow = 60 * 60 * 1000; // 1 hour
-const rateLimitMaxRequests = 50; // Max 50 requests per window
-const requestTimestamps = new Map();
-/**
- * Basic memory formatter that stringifies and passes
- * message history directly into the model.
- */
+
 const formatMessage = (message: VercelChatMessage) => {
   return `${message.role}: ${message.content}`;
 };
@@ -26,56 +25,28 @@ export function combineDocuments(docs) {
   return docs.map((doc) => doc.pageContent).join("\n\n");
 }
 
-/*
- * This handler initializes and calls a simple chain with a prompt,
- * chat model, and output parser. See the docs for more information:
- *
- * https://js.langchain.com/docs/guides/expression_language/cookbook#prompttemplate--llm--outputparser
- */
 export async function POST(req: NextRequest) {
-  /**
-   * See a full list of supported models at:
-   * https://js.langchain.com/docs/modules/model_io/models/
-   */
   const model = new ChatOpenAI({
     temperature: 0.3,
     // modelName: "gpt-4",
   });
 
-  const parser = new HttpResponseOutputParser();
-
-  const now = Date.now();
-  const ip = req.headers["x-forwarded-for"] || req.headers["x-real-ip"];
-
-  const timestamps = requestTimestamps.get(ip) || [];
-  timestamps.push(now);
-
-  // Only keep timestamps within the current rate limit window
-  const recentTimestamps = timestamps.filter((timestamp: number) => now - timestamp < rateLimitWindow);
-
-  requestTimestamps.set(ip, recentTimestamps);
-
-  if (recentTimestamps.length > rateLimitMaxRequests) {
-    // If the user has exceeded the rate limit, return an error
-    return new Response("Too many requests", { status: 429 });
-  }
+  // const parser = new HttpResponseOutputParser();
+  const parser = StructuredOutputParser.fromZodSchema(
+    z.object({
+      answer: z.string().describe("answer to the user's question"),
+      sources: z
+        .array(z.string())
+        .describe(
+          "sources used to answer the question, should be blog post articles from https://applification.net/posts."
+        ),
+    })
+  );
 
   const body = await req.json();
   const messages = body.messages ?? [];
   const formattedPreviousMessages = messages.slice(0, -1).map(formatMessage);
   const currentMessageContent = messages[messages.length - 1].content;
-
-  // Convert to question chain
-  const standaloneQuestionTemplate =
-    "Given a question, convert it to a standalone question. question: {question} standalone question:";
-  const standaloneQuestionPrompt = PromptTemplate.fromTemplate(standaloneQuestionTemplate);
-
-  const standaloneQuestionChain = RunnableSequence.from([standaloneQuestionPrompt, model, new StringOutputParser()]);
-
-  const standaldoneQuestionResult = await standaloneQuestionChain.invoke({
-    question: currentMessageContent,
-  });
-  // console.log("standaloneQuestionResult", standaldoneQuestionResult);
 
   // RAG
   const answerTemplate = `You are an AI designed to emulate the thoughts and views of Dave Hudson. Your responses should be in the first person, as if Dave himself is speaking. Use phrases like "In my view..." or "I believe...". 
@@ -88,10 +59,10 @@ export async function POST(req: NextRequest) {
   {chat_history}
   
   Context: {context}
-  
+
   question: {question}
   
-  answer: `;
+  answer: {format_instructions}`;
 
   // const answerPrompt = PromptTemplate.fromTemplate(answerTemplate);
 
@@ -114,23 +85,31 @@ export async function POST(req: NextRequest) {
     queryName: "match_documents",
   });
 
-  const context = await vectorStore.similaritySearch(standaldoneQuestionResult, 5);
-  // console.log(context);
+  const context = await vectorStore.similaritySearch(currentMessageContent, 3);
 
   const chain = RunnableSequence.from([prompt, model, parser]);
 
-  const stream = await chain.stream({
+  const response = await chain.invoke({
     chat_history: formattedPreviousMessages.join("\n"),
-    // context: context[0].pageContent,
     context: combineDocuments(context),
-    question: standaldoneQuestionResult,
+    question: currentMessageContent,
+    format_instructions: parser.getFormatInstructions(),
   });
+  console.log("response", response);
 
-  const httpResponse = new Response(stream, {
-    headers: {
-      "Content-Type": "text/plain; charset=utf-8",
-    },
-  });
+  // const stream = await chain.stream({
+  //   chat_history: formattedPreviousMessages.join("\n"),
+  //   question: currentMessageContent,
+  //   format_instructions: parser.getFormatInstructions(),
+  // });
 
-  return httpResponse;
+  return new Response(JSON.stringify(response));
+
+  // const httpResponse = new Response(stream, {
+  //   headers: {
+  //     "Content-Type": "text/plain; charset=utf-8",
+  //   },
+  // });
+
+  // return httpResponse;
 }

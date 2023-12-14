@@ -1,6 +1,28 @@
 import { SunIcon } from "@heroicons/react/20/solid";
 import { cn } from "../lib/utils";
 
+const RenderMessageObject = ({ children }: { children: React.ReactNode }) => {
+  if (typeof children === "string") {
+    try {
+      const messageObject = JSON.parse(children);
+      if (typeof messageObject === "object" && messageObject !== null) {
+        console.log("object");
+        return (
+          <>
+            {messageObject.answer}
+            <br />
+            <em>source: {messageObject.sources[0]}</em>
+          </>
+        );
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return children;
+    }
+  }
+};
+
 export default function MessageAI({ children }: { children: React.ReactNode }) {
   return (
     <div className="ui-flex">
@@ -15,7 +37,9 @@ export default function MessageAI({ children }: { children: React.ReactNode }) {
       </div>
 
       <div className="ui-flex ui-w-full ui-flex-col ui-items-start lg:ui-flex-row lg:ui-justify-between">
-        <p className="ui-max-w-3xl">{children}</p>
+        <p className="ui-max-w-3xl">
+          <RenderMessageObject>{children}</RenderMessageObject>
+        </p>
         <div className="ui-mt-4 ui-flex ui-flex-row ui-justify-start ui-gap-x-2 ui-text-slate-500 lg:ui-mt-0">
           <button className="hover:ui-text-blue-600" type="button">
             <svg
