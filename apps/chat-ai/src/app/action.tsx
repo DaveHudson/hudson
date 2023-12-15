@@ -4,7 +4,6 @@ import OpenAI from "openai";
 import type { Message } from "ai";
 import { OpenAIStream, experimental_StreamingReactResponse } from "ai";
 import { getContext } from "./utils/getContext";
-import { RenderJson } from "./components/render-json";
 import { RenderContentStream } from "./components/render-content-stream";
 import { RenderCode } from "./components/render-code";
 
@@ -51,12 +50,11 @@ export async function handler({ messages }: { messages: Message[] }) {
   return new experimental_StreamingReactResponse(stream, {
     ui({ content }) {
       return (
-        <div className="prose">
+        <>
           <RenderContentStream content={content} />
           <div className="flex text-blue-500">Custom UI content rendered by the server</div>
-          {/* <RenderJson content={content} /> */}
           <RenderCode content={content} />
-        </div>
+        </>
       );
     },
   });
