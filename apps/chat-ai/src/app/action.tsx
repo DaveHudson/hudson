@@ -4,14 +4,26 @@ import OpenAI from "openai";
 import type { Message } from "ai";
 import { OpenAIStream, experimental_StreamingReactResponse } from "ai";
 import { getContext } from "./utils/getContext";
+import { extractJSON } from "./utils/extractJSON";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
 });
 
+const RenderJson = ({ content }: { content: any }) => {
+  const possibleJson = extractJSON(content);
+  if (!possibleJson) return null;
+  return (
+    <div className="bg-gray-100 dark:bg-slate-800 p-4 rounded-md">
+      <pre>{JSON.stringify(possibleJson, null, 2)}</pre>
+    </div>
+  );
+};
+
 export async function handler({ messages }: { messages: Message[] }) {
   // * Previous User Messages
   const userMessages = messages.filter((message: Message) => message.role === "user");
+
   // * Current message
   const currentMessageContent = messages[messages.length - 1].content;
 
@@ -46,10 +58,12 @@ export async function handler({ messages }: { messages: Message[] }) {
   // * Respond with the stream
   return new experimental_StreamingReactResponse(stream, {
     ui({ content }) {
+      console.log("content", content);
       return (
         <div>
           {content}
           <div className="flex text-blue-500">Custom UI content rendered by the server</div>
+          <RenderJson content={content} />
         </div>
       );
     },
