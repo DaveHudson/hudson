@@ -10,19 +10,21 @@ export const RenderCode = ({ content }: { content: any }) => {
   const codeBlock = JSON.stringify(jsonObject, null, 2);
 
   return (
-    <Highlight theme={themes.nightOwl} code={codeBlock} language="tsx">
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre style={style}>
-          {tokens.map((line, i) => (
-            <div key={i} {...getLineProps({ line })}>
-              {/* <span>{i + 1}</span> */}
-              {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token })} />
-              ))}
-            </div>
-          ))}
-        </pre>
-      )}
-    </Highlight>
+    <div className="prose">
+      <Highlight theme={themes.nightOwl} code={codeBlock} language="tsx">
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <pre style={style}>
+            {tokens.map((line, i) => (
+              <div key={i} {...getLineProps({ line })}>
+                {/* <span>{i + 1}</span> */}
+                {line.map((token, key) => (
+                  <span key={key} {...getTokenProps({ token })} />
+                ))}
+              </div>
+            ))}
+          </pre>
+        )}
+      </Highlight>
+    </div>
   );
 };

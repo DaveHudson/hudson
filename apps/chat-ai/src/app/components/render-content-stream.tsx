@@ -7,7 +7,15 @@ export const RenderContentStream = ({ content }: { content: any }) => {
   if (!possibleJson)
     return (
       <div>
-        <ReactMarkdown>{content}</ReactMarkdown>
+        <ReactMarkdown
+          components={{
+            a: ({ node, ...props }) => (
+              <a className="text-sky-700 hover:text-sky-500 underline" {...props} contentEditable="false" />
+            ),
+          }}
+        >
+          {content}
+        </ReactMarkdown>
       </div>
     );
 

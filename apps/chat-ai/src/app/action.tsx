@@ -31,7 +31,7 @@ export async function handler({ messages }: { messages: Message[] }) {
   Current conversation:
   {chat_history}  
   Context: ${context}
-  question: {question}
+  question: ${currentMessageContent}
   answer: `,
     },
   ];
@@ -49,6 +49,7 @@ export async function handler({ messages }: { messages: Message[] }) {
   // * Respond with the stream
   return new experimental_StreamingReactResponse(stream, {
     ui({ content }) {
+      console.log(content);
       return (
         <>
           <RenderContentStream content={content} />
