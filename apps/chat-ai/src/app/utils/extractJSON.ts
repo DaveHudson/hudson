@@ -1,18 +1,35 @@
-export function extractJSON(str: string) {
-  const regex = /{(?:[^{}]|{[^{}]*})*}/gs;
-  let match: string[] | null;
-  const matches = [];
-  while ((match = regex.exec(str)) !== null) {
+export function extractJSON(str: string): [any, number, number] | null {
+  const regex = /{[\s\S]*}/;
+  const match = regex.exec(str);
+
+  if (match) {
     try {
-      // @ts-expect-error
-      matches.push(JSON.parse(match[0]));
+      return [JSON.parse(match[0]), match.index, match.index + match[0].length];
     } catch (e) {
-      console.error("Invalid JSON detected");
+      // we expect invalid JSON due to streaming, just silently fail
+      return null;
     }
   }
-  return matches;
+
+  return null;
 }
 
-// const response = `Your API response here...`;
-// const jsonObjects = extractJSON(response);
-// console.log(jsonObjects);
+export function extractJSONWithBackticks(str: string): any[] {
+  // Match JSON objects in markdown code blocks
+  const regex = /```json((?:.|\n)*?)```/g;
+  const matches = Array.from(str.matchAll(regex));
+
+  // Parse JSON objects
+  const jsonObjects = matches
+    .map((match) => {
+      try {
+        return JSON.parse(match[1]);
+      } catch (e) {
+        console.error("Invalid JSON detected");
+        return null;
+      }
+    })
+    .filter((obj) => obj !== null);
+
+  return jsonObjects;
+}
