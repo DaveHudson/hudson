@@ -1,10 +1,14 @@
+import { extractYouTubeEmbed } from "../utils/extractYouTubeEmbed";
 import { extractJSON } from "../utils/extractJSON";
 import ReactMarkdown from "react-markdown";
 
 export const RenderContentStream = ({ content }: { content: any }) => {
   // Strip content of any Rich content
   const possibleJson = extractJSON(content);
-  if (!possibleJson)
+  if (!possibleJson) {
+    const iframe = extractYouTubeEmbed(content);
+    const contentWithoutIframe = iframe ? content.replace(iframe, "") : content;
+
     return (
       <div>
         <ReactMarkdown
@@ -14,10 +18,11 @@ export const RenderContentStream = ({ content }: { content: any }) => {
             ),
           }}
         >
-          {content}
+          {contentWithoutIframe}
         </ReactMarkdown>
       </div>
     );
+  }
 
   // Remove JSON from original content
   const contentWithoutJson = content.slice(0, possibleJson[1]) + content.slice(possibleJson[2]);

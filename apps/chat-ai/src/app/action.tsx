@@ -6,6 +6,7 @@ import { OpenAIStream, experimental_StreamingReactResponse } from "ai";
 import { getContext } from "./utils/getContext";
 import { RenderContentStream } from "./components/render-content-stream";
 import { RenderCode } from "./components/render-code";
+import { RenderVideo } from "./components/render-video";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
@@ -49,12 +50,12 @@ export async function handler({ messages }: { messages: Message[] }) {
   // * Respond with the stream
   return new experimental_StreamingReactResponse(stream, {
     ui({ content }) {
-      console.log(content);
       return (
         <>
           <RenderContentStream content={content} />
-          <div className="flex text-blue-500">Custom UI content rendered by the server</div>
           <RenderCode content={content} />
+          <RenderVideo content={content} />
+          {/* <div className="flex text-blue-500">Custom UI content rendered by the server</div> */}
         </>
       );
     },
