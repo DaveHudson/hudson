@@ -6,6 +6,7 @@ import { OpenAIStream, experimental_StreamingReactResponse } from "ai";
 import { getContext } from "./utils/getContext";
 import { RenderJson } from "./components/render-json";
 import { RenderContentStream } from "./components/render-content-stream";
+import { RenderCode } from "./components/render-code";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
@@ -54,6 +55,7 @@ export async function handler({ messages }: { messages: Message[] }) {
           <RenderContentStream content={content} />
           <div className="flex text-blue-500">Custom UI content rendered by the server</div>
           <RenderJson content={content} />
+          <RenderCode content={content} />
         </div>
       );
     },
