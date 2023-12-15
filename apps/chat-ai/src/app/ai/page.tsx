@@ -14,7 +14,6 @@ export default function Chat(): React.ReactNode {
         <Messages messages={messages} />
       </div>
       <br />
-      <pre>{JSON.stringify(messages, null, 2)}</pre>
       <div className="fixed bottom-0 left-0 right-0 z-10 bg-white dark:bg-slate-900">
         <form className="flex w-full items-center rounded-md pl-1 pr-2 pb-6" onSubmit={handleSubmit}>
           <PromptInput handleInputChange={handleInputChange} input={input} />
