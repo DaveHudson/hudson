@@ -1,7 +1,8 @@
 import { SunIcon } from "@heroicons/react/20/solid";
 import { cn } from "../lib/utils";
+import { Message } from "ai";
 
-export default function MessageAI({ children }: { children: React.ReactNode }) {
+export default function MessageAI({ children }: { children: Message }) {
   return (
     <div className="ui-flex">
       <div className="ui-flex ui-flex-row ui-px-4 ui-y-1">
@@ -15,7 +16,7 @@ export default function MessageAI({ children }: { children: React.ReactNode }) {
       </div>
 
       <div className="ui-flex ui-w-full ui-flex-col ui-items-start lg:ui-flex-row lg:ui-justify-between">
-        <p className="ui-max-w-3xl">{children}</p>
+        <p className="ui-max-w-3xl">{children.ui}</p>
         <div className="ui-mt-4 ui-flex ui-flex-row ui-justify-start ui-gap-x-2 ui-text-slate-500 lg:ui-mt-0">
           <button className="hover:ui-text-blue-600" type="button">
             <svg
