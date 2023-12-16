@@ -5,7 +5,7 @@
     "**/*.css"
   ],
   "exports": {
-    "./styles.css": "./public/styles.css",
+    "./styles.css": "./styles.css",
     "./card": "./src/card.tsx",
     "./prompt-input": "./src/prompt-input.tsx",
     "./messages": "./src/messages.tsx",
