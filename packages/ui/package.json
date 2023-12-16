@@ -5,7 +5,7 @@
     "**/*.css"
   ],
   "exports": {
-    "./styles.css": "./styles.css",
+    "./styles.css": "./public/styles.css",
     "./card": "./src/card.tsx",
     "./prompt-input": "./src/prompt-input.tsx",
     "./messages": "./src/messages.tsx",
@@ -14,9 +14,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "tailwindcss -i ./src/styles.css -o ./styles.css && npm run build-storybook",
+    "build": "tailwindcss -i ./src/styles.css -o ./public/styles.css && npm run build-storybook",
     "lint": "eslint src/",
-    "dev": "tailwindcss -i ./src/styles.css -o ./styles.css --watch",
+    "dev": "tailwindcss -i ./src/styles.css -o ./public/styles.css --watch",
     "type-check": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -c .storybook -o ./storybook-static"
