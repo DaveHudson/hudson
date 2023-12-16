@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "tailwindcss -i ./src/styles.css -o dist/index.css",
+    "build": "tailwindcss -i ./src/styles.css -o dist/index.css && npm run build-storybook",
     "lint": "eslint src/",
     "dev": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch",
     "type-check": "tsc --noEmit",

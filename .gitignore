@@ -39,3 +39,6 @@ yarn-error.log*
 
 # Ignore docs for upload
 apps/ragup/docs
+
+# Storybook static build
+packages/ui/storybook-static
