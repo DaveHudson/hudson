@@ -15,7 +15,7 @@ if (!sbApiKey || !sbUrl || !openAIApiKey) {
   process.exit(1);
 }
 
-const loader = new DirectoryLoader("./docs", {
+const loader = new DirectoryLoader("./corpus", {
   ".md": (path) => new TextLoader(path),
 });
 
