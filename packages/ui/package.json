@@ -19,7 +19,7 @@
     "dev": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch",
     "type-check": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build -c .storybook -o ./storybook-static"
   },
   "peerDependencies": {
     "react": "^18.2.0"
