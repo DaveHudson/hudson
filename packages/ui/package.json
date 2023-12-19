@@ -10,7 +10,19 @@
     "./prompt-input": "./src/prompt-input.tsx",
     "./messages": "./src/messages.tsx",
     "./message-ai": "./src/message-ai.tsx",
-    "./message-user": "./src/message-user.tsx"
+    "./message-user": "./src/message-user.tsx",
+    "./chat/info-slide-over": "./src/chat/info-slide-over.tsx",
+    "./chat/message-ai": "./src/chat/message-ai.tsx",
+    "./chat/message-user": "./src/chat/message-user.tsx",
+    "./chat/messages": "./src/chat/messages.tsx",
+    "./chat/prompt-input": "./src/chat/prompt-input.tsx",
+    "./nav/header": "./src/nav/header.tsx",
+    "./nav/nav-desktop": "./src/nav/nav-desktop.tsx",
+    "./nav/nav-mobile": "./src/nav/nav-mobile.tsx",
+    "./nav/search": "./src/nav/search.tsx",
+    "./nav/user-profile": "./src/nav/user-profile.tsx",
+    "./ui/button": "./src/ui/button.tsx",
+    "./ui/input": "./src/ui/input.tsx"
   },
   "license": "MIT",
   "scripts": {
