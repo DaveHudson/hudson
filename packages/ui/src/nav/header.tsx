@@ -13,7 +13,6 @@ export default function Header({ setSidebarOpen }: { setSidebarOpen: (open: bool
         <span className="ui-sr-only">Open sidebar</span>
         <Bars3Icon className="ui-h-6 ui-w-6" aria-hidden="true" />
       </button>
-      <div className="ui-h-6 ui-w-px ui-bg-gray-200 dark:ui-bg-gray-700 lg:ui-hidden" aria-hidden="true" />
       <div className="ui-flex ui-flex-1 ui-gap-x-4 ui-self-stretch lg:ui-gap-x-6">
         <Search />
         <div className="ui-flex ui-items-center ui-gap-x-4 lg:ui-gap-x-6">

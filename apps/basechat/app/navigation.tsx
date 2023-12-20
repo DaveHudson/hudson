@@ -17,8 +17,6 @@ import {
 } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 
-import Messages from "@repo/ui/messages";
-
 import NavigationDesktop from "@repo/ui/nav/nav-desktop";
 import NavigationMobile from "@repo/ui/nav/nav-mobile";
 import Header from "@repo/ui/nav/header";
@@ -37,7 +35,7 @@ export default function App({ children }: { children: React.ReactNode }) {
 
   const navigation = [
     { name: "Dashboard", href: "/", icon: HomeIcon, current: pathname === "/" },
-    { name: "AI Prompts", href: "/prompts", icon: CommandLineIcon, current: pathname === "/prompts" },
+    // { name: "AI Prompts", href: "/prompts", icon: CommandLineIcon, current: pathname === "/prompts" },
     {
       name: "Chat",
       href: "/chat",
@@ -51,20 +49,20 @@ export default function App({ children }: { children: React.ReactNode }) {
       icon: ChatBubbleBottomCenterTextIcon,
       current: pathname === "/chat/openai/chatgpt",
     },
-    {
-      name: "Chat GPT (Voice)",
-      href: "/chat/openai/voice",
-      subNav: true,
-      icon: SpeakerWaveIcon,
-      current: pathname === "/chat/openai/voice",
-    },
-    {
-      name: "Chat GPT (RAG)",
-      href: "/chat/openai/rag",
-      subNav: true,
-      icon: DocumentPlusIcon,
-      current: pathname === "/chat/openai/rag",
-    },
+    // {
+    //   name: "Chat GPT (Voice)",
+    //   href: "/chat/openai/voice",
+    //   subNav: true,
+    //   icon: SpeakerWaveIcon,
+    //   current: pathname === "/chat/openai/voice",
+    // },
+    // {
+    //   name: "Chat GPT (RAG)",
+    //   href: "/chat/openai/rag",
+    //   subNav: true,
+    //   icon: DocumentPlusIcon,
+    //   current: pathname === "/chat/openai/rag",
+    // },
     {
       name: "Claude",
       href: "/chat/anthropic/claude",
@@ -72,13 +70,13 @@ export default function App({ children }: { children: React.ReactNode }) {
       icon: UsersIcon,
       current: pathname === "/chat/anthropic/claude",
     },
-    {
-      name: "Ollama (Llama2)",
-      href: "/chat/ollama/llama2",
-      subNav: true,
-      icon: UsersIcon,
-      current: pathname === "/chat/ollama/llama2",
-    },
+    // {
+    //   name: "Ollama (Llama2)",
+    //   href: "/chat/ollama/llama2",
+    //   subNav: true,
+    //   icon: UsersIcon,
+    //   current: pathname === "/chat/ollama/llama2",
+    // },
     {
       name: "Completion",
       href: "/completion",
@@ -133,12 +131,12 @@ export default function App({ children }: { children: React.ReactNode }) {
       subNav: true,
       current: pathname === "/image/stability/image-to-image",
     },
-    {
-      name: "Video",
-      href: "/video",
-      icon: FilmIcon,
-      current: pathname === "/video",
-    },
+    // {
+    //   name: "Video",
+    //   href: "/video",
+    //   icon: FilmIcon,
+    //   current: pathname === "/video",
+    // },
   ];
 
   useEffect(() => {

@@ -2,8 +2,8 @@ import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 export default function Search() {
   return (
-    <form className="ui-relative ui-flex ui-flex-1" action="#" method="GET">
-      <label htmlFor="search-field" className="sr-only">
+    <form className="ui-relative ui-flex ui-flex-1 ui-pt-2 ui-pb-2" action="#" method="GET">
+      <label htmlFor="search-field" className="ui-sr-only">
         Search
       </label>
       <MagnifyingGlassIcon
@@ -12,7 +12,7 @@ export default function Search() {
       />
       <input
         id="search-field"
-        className="ui-block ui-h-full ui-w-full ui-border-0 ui-py-0 ui-pl-8 ui-pr-0 dark:ui-bg-gray-900 ui-text-gray-900 dark:ui-text-gray-300 placeholder:ui-text-gray-400 focus:ui-ring-0 sm:ui-text-sm"
+        className="ui-block ui-h-full ui-w-full !ui-border-0 ui-py-0 !ui-pl-8 ui-pr-0 dark:!ui-bg-gray-900 ui-text-gray-900 dark:!ui-text-gray-300 placeholder:ui-text-gray-400 focus:ui-ring-0 sm:ui-text-sm !ui-rounded-md"
         placeholder="Search..."
         type="search"
         name="search"

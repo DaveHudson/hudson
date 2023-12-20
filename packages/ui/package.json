@@ -21,8 +21,8 @@
     "./nav/nav-mobile": "./src/nav/nav-mobile.tsx",
     "./nav/search": "./src/nav/search.tsx",
     "./nav/user-profile": "./src/nav/user-profile.tsx",
-    "./ui/button": "./src/ui/button.tsx",
-    "./ui/input": "./src/ui/input.tsx"
+    "./base/button": "./src/base/button.tsx",
+    "./base/input": "./src/base/input.tsx"
   },
   "license": "MIT",
   "scripts": {

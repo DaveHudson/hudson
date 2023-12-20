@@ -5,7 +5,7 @@ import { MicrophoneIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import invariant from "tiny-invariant";
 import { Visualizer } from "react-sound-visualizer";
-import { Button } from "@repo/ui/ui/button";
+import { Button } from "@repo/ui/base/button";
 
 export default function Chat() {
   const { status, startRecording, stopRecording, mediaBlobUrl, previewAudioStream } = useReactMediaRecorder({

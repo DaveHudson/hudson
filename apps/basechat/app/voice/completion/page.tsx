@@ -5,15 +5,17 @@ import { MicrophoneIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import invariant from "tiny-invariant";
 import { Visualizer } from "react-sound-visualizer";
-import { Button } from "@repo/ui/ui/button";
+import { Button } from "@repo/ui/base/button";
 
 export default function Chat() {
   const { status, startRecording, stopRecording, mediaBlobUrl, previewAudioStream } = useReactMediaRecorder({
     audio: true,
   });
   const [audioURL, setAudioURL] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
+    setLoading(true);
     invariant(mediaBlobUrl, "mediaBlobUrl is null");
     const audioBlob = await fetch(mediaBlobUrl).then((r) => r.blob());
     const audiofile = new File([audioBlob], "audiofile.mp3", {
@@ -29,6 +31,7 @@ export default function Chat() {
     const blob = new Blob([await res.blob()], { type: "audio/mpeg" });
     const url = URL.createObjectURL(blob);
     setAudioURL(url);
+    setLoading(false);
   };
   return (
     <div>
@@ -55,7 +58,9 @@ export default function Chat() {
         </button>
         {mediaBlobUrl && <audio src={mediaBlobUrl} controls playsInline hidden />}
       </div>
-      <Button onClick={handleSubmit}>Send</Button>
+      <Button variant="default" onClick={handleSubmit} disabled={loading}>
+        {loading ? "Loading..." : "Submit"}
+      </Button>
       <div className="flex-1 space-y-8 overflow-y-auto leading-6 sm:text-base sm:leading-7">
         {audioURL && (
           <audio autoPlay controls hidden>
