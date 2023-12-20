@@ -1,4 +1,4 @@
-# `ragup`
+# `rag-uploader`
 
 Looks for Markdown documents in `/docs` directory. Chunks the files and uploads do Supabase Vector Store.
 

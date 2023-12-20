@@ -1,14 +1,6 @@
-# Turborepo Tailwind CSS starter
+# Hudson AI
 
-This is an official starter Turborepo.
-
-## Using this example
-
-Run the following command:
-
-```sh
-npx create-turbo@latest -e with-tailwind
-```
+Turborepo containing AI R&D projects.
 
 ## What's inside?
 
@@ -16,13 +8,13 @@ This Turborepo includes the following packages/apps:
 
 ### Apps and Packages
 
-- `docs`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
+- `basechat`: a R&D [Next.js](https://nextjs.org/) app to explore the latest AI releases.
+- `cv-ai-chat`: A [Next.js](https://nextjs.org/) app UI that interacts with a RAG Node backend.
+- `cv-ai-rag-uploader`: A Node RAG uploader to provide content for `cv-ai-chat`.
+- `@repo/ui`: Tailwind shared UI components for use in apps.
+- `@repo/tailwind-config`: Shared Tailwind configuration for apps and packages.
 - `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
 ### Building packages/ui
 

@@ -37,8 +37,5 @@ yarn-error.log*
 .DS_Store
 *.pem
 
-# Ignore docs for upload
-apps/ragup/docs
-
 # Storybook static build
 packages/ui/storybook-static
