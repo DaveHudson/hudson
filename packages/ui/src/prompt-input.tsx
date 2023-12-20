@@ -5,10 +5,12 @@ export default function PromptInput({
   input,
   handleInputChange,
   disabled,
+  fileUpload = false,
 }: {
   input: string;
   handleInputChange: (event: unknown) => void;
   disabled?: boolean;
+  fileUpload?: boolean;
 }) {
   const textareaRef = useRef(null);
 
@@ -31,32 +33,34 @@ export default function PromptInput({
       <label className="ui-sr-only" htmlFor="prompt">
         Enter your prompt
       </label>
-      <div>
-        <button
-          className="hover:ui-text-blue-600 dark:ui-text-slate-200 dark:hover:ui-text-blue-600 sm:ui-p-2"
-          type="button"
-        >
-          <svg
-            aria-hidden="true"
-            className="ui-h-6 ui-w-6"
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+      {fileUpload && (
+        <div>
+          <button
+            className="hover:ui-text-blue-600 dark:ui-text-slate-200 dark:hover:ui-text-blue-600 sm:ui-p-2"
+            type="button"
           >
-            <path d="M0 0h24v24H0z" fill="none" stroke="none" />
-            <path d="M12 5l0 14" />
-            <path d="M5 12l14 0" />
-          </svg>
-          <span className="ui-sr-only">Attach file</span>
-        </button>
-      </div>
+            <svg
+              aria-hidden="true"
+              className="ui-h-6 ui-w-6"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 0h24v24H0z" fill="none" stroke="none" />
+              <path d="M12 5l0 14" />
+              <path d="M5 12l14 0" />
+            </svg>
+            <span className="ui-sr-only">Attach file</span>
+          </button>
+        </div>
+      )}
 
       <textarea
-        className="ui-block ui-w-full ui-rounded-md ui-border-0 ui-py-1.5 dark:ui-bg-gray-900 ui-text-gray-900 dark:ui-text-gray-300 ui-shadow-sm ui-ring-1 ui-ring-inset ui-ring-gray-300 dark:ui-ring-gray-700 placeholder:ui-text-gray-400 focus:ui-ring-2 focus:ui-ring-inset focus:ui-ring-sky-600 sm:ui-text-sm sm:ui-leading-6"
+        className="ui-block ui-w-full ui-rounded-md ui-border-0 ui-py-1.5 dark:ui-bg-gray-900 ui-text-gray-900 dark:ui-text-gray-300 ui-shadow-sm ui-ring-1 ui-ring-inset ui-ring-sky-700 dark:ui-ring-gray-700 placeholder:ui-text-gray-400 focus:ui-ring-2 focus:ui-ring-inset focus:ui-ring-sky-600 sm:ui-text-sm sm:ui-leading-6"
         id="prompt"
         onChange={handleInputChange}
         onKeyDown={(event) => {
@@ -71,8 +75,9 @@ export default function PromptInput({
         ref={textareaRef}
         rows={1}
         value={input}
+        autoFocus
       />
-      <div>
+      <div className="flex items-center">
         <button
           className="ui-inline-flex hover:ui-text-blue-600 dark:ui-text-slate-200 dark:hover:ui-text-blue-600 sm:ui-p-2"
           disabled={disabled}
