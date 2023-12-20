@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "node --loader ts-node/esm ./index.ts",
+    "blog": "node --loader ts-node/esm ./blog.ts",
+    "docs": "node --loader ts-node/esm ./index.ts",
+    "github": "node --loader ts-node/esm ./github.ts",
     "build": "echo 'Add build script here'",
     "test": "echo 'Add test script here'",
     "lint": "echo 'Add lint script here'"

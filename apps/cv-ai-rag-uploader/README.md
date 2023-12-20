@@ -1,6 +1,6 @@
-# `rag-uploader`
+# CV AI Chat RAG Uploader
 
-Looks for Markdown documents in `/docs` directory. Chunks the files and uploads do Supabase Vector Store.
+> Various scripts for chunking & uploading content to the RAG database.
 
 ## RAG
 
@@ -9,12 +9,15 @@ This project uses Supabase with the vector extension to store RAG data, paired w
 For more details, see the docs:
 
 - [https://js.langchain.com/docs/integrations/vectorstores/supabase](https://js.langchain.com/docs/integrations/vectorstores/supabase)
-- [https://scrimba.com/learn/langchain/supabase-setup-cocb84fce96a85fb50de02772](https://scrimba.com/learn/langchain/supabase-setup-cocb84fce96a85fb50de02772)
 
 ### Adding Markdown documents
 
-`node --loader ts-node/esm ./index.ts`
+`npm run docs`
 
 ### Adding blog posts
 
-`node --loader ts-node/esm ./blog.ts`
+`npm run blog`
+
+### Adding Github Repository code
+
+`npm run github`

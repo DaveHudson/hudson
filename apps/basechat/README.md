@@ -13,7 +13,7 @@
 
 ## Configure Secrets
 
-Create a `.env.local` file and copy the contents of `.env` into it. Then add your own secrets.
+Create a `.env.local` file and copy the contents of `.env.example` into it. Then add your own secrets.
 
 As a minimum you will need to add your own [Open AI API key](https://platform.openai.com/overview).
 
