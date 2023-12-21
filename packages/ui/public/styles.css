@@ -845,13 +845,13 @@ select {
   margin: 0px;
 }
 
-.ui-m-3 {
-  margin: 0.75rem;
-}
-
 .ui--mx-2 {
   margin-left: -0.5rem;
   margin-right: -0.5rem;
+}
+
+.ui-mb-0 {
+  margin-bottom: 0px;
 }
 
 .ui-mb-3 {
@@ -876,6 +876,10 @@ select {
 
 .ui-mr-16 {
   margin-right: 4rem;
+}
+
+.ui-mr-2 {
+  margin-right: 0.5rem;
 }
 
 .ui-mr-3 {
@@ -910,12 +914,28 @@ select {
   margin-top: auto;
 }
 
-.ui-mt-3 {
-  margin-top: 0.75rem;
+.ui-mb-2 {
+  margin-bottom: 0.5rem;
 }
 
-.ui-mr-2 {
-  margin-right: 0.5rem;
+.ui-mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.\!ui-mb-0 {
+  margin-bottom: 0px !important;
+}
+
+.\!ui-mb-2 {
+  margin-bottom: 0.5rem !important;
+}
+
+.\!ui-mb-1 {
+  margin-bottom: 0.25rem !important;
+}
+
+.\!ui-mt-1 {
+  margin-top: 0.25rem !important;
 }
 
 .ui-block {
@@ -1116,8 +1136,9 @@ select {
   justify-content: space-between;
 }
 
-.ui-gap-3 {
-  gap: 0.75rem;
+.ui-gap-x-1 {
+  -moz-column-gap: 0.25rem;
+       column-gap: 0.25rem;
 }
 
 .ui-gap-x-2 {
@@ -1135,6 +1156,10 @@ select {
        column-gap: 1rem;
 }
 
+.ui-gap-y-2 {
+  row-gap: 0.5rem;
+}
+
 .ui-gap-y-5 {
   row-gap: 1.25rem;
 }
@@ -1143,17 +1168,8 @@ select {
   row-gap: 1.75rem;
 }
 
-.ui-gap-x-1 {
-  -moz-column-gap: 0.25rem;
-       column-gap: 0.25rem;
-}
-
 .ui-gap-y-1 {
   row-gap: 0.25rem;
-}
-
-.ui-gap-y-2 {
-  row-gap: 0.5rem;
 }
 
 .ui-space-y-1 > :not([hidden]) ~ :not([hidden]) {
@@ -1230,10 +1246,6 @@ select {
   border-right-width: 1px;
 }
 
-.ui-border-l-4 {
-  border-left-width: 4px;
-}
-
 .ui-border-t {
   border-top-width: 1px;
 }
@@ -1243,17 +1255,17 @@ select {
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 
+.ui-border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
 .ui-border-input {
   border-color: hsl(var(--input));
 }
 
 .ui-border-transparent {
   border-color: transparent;
-}
-
-.ui-border-gray-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
 .\!ui-bg-sky-600 {
@@ -1331,6 +1343,11 @@ select {
   background-color: hsl(var(--secondary));
 }
 
+.ui-bg-slate-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+}
+
 .ui-bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1344,25 +1361,6 @@ select {
 .ui-bg-yellow-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
-}
-
-.ui-bg-transparent {
-  background-color: transparent;
-}
-
-.ui-bg-slate-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
-}
-
-.ui-bg-slate-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
-}
-
-.ui-bg-red-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
 }
 
 .ui-fill-sky-600 {
@@ -1395,10 +1393,6 @@ select {
 
 .ui-p-2\.5 {
   padding: 0.625rem;
-}
-
-.ui-p-0 {
-  padding: 0px;
 }
 
 .ui-px-2 {
@@ -1497,8 +1491,12 @@ select {
   padding-top: 1.25rem;
 }
 
-.ui-pl-2 {
-  padding-left: 0.5rem;
+.ui-pb-0 {
+  padding-bottom: 0px;
+}
+
+.\!ui-pb-0 {
+  padding-bottom: 0px !important;
 }
 
 .ui-text-left {
@@ -1530,11 +1528,6 @@ select {
   line-height: 1rem;
 }
 
-.ui-text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
-
 .ui-font-bold {
   font-weight: 700;
 }
@@ -1551,10 +1544,6 @@ select {
   line-height: 1.5rem;
 }
 
-.ui-leading-8 {
-  line-height: 2rem;
-}
-
 .ui-text-blue-700 {
   --tw-text-opacity: 1;
   color: rgb(29 78 216 / var(--tw-text-opacity));
@@ -1562,6 +1551,11 @@ select {
 
 .ui-text-destructive-foreground {
   color: hsl(var(--destructive-foreground));
+}
+
+.ui-text-gray-200 {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
 }
 
 .ui-text-gray-400 {
@@ -1649,21 +1643,6 @@ select {
 .ui-text-yellow-800 {
   --tw-text-opacity: 1;
   color: rgb(133 77 14 / var(--tw-text-opacity));
-}
-
-.ui-text-gray-600 {
-  --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
-}
-
-.ui-text-gray-300 {
-  --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity));
-}
-
-.ui-text-gray-200 {
-  --tw-text-opacity: 1;
-  color: rgb(229 231 235 / var(--tw-text-opacity));
 }
 
 .ui-underline-offset-4 {

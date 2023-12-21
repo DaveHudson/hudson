@@ -49,41 +49,41 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
             <Ratios ratios={PeppyRatios} />
 
             <h3 className="prose-em text-gray-300 mb-0 mt-4">Full-Stack Engineer • Pando</h3>
-            <h4 className="prose-h4 mt-2 mb-0 text-gray-400">Pando Admin</h4>
+            <h4 className="prose-h4 mt-2 mb-0 text-gray-300">Pando Admin</h4>
             <RoleSummary
               text="Architected, developed and tested web app messaging & management platform used by over 65,000 healthcare
             professionals within the NHS, including low bandwidth MoD clinicians"
             />
             <Ratios ratios={PandoAdminRatios} />
-            <h4 className="prose-h4 mt-4 mb-0 text-gray-400">Pando Access</h4>
+            <h4 className="prose-h4 mt-4 mb-0 text-gray-300">Pando Access</h4>
             <RoleSummary text="Designed &amp; built proof of concept prototype for Pando Access in 4 weeks, across Web, Mobile & API" />
             <Ratios ratios={PandoAccessRatios} />
 
             <h3 className="prose-em text-gray-300 mb-0 mt-4">Full-Stack Engineer • Surevine</h3>
-            <h4 className="prose-h4 mt-2 mb-0 text-gray-400">Web App UK Govt (MoD)</h4>
+            <h4 className="prose-h4 mt-2 mb-0 text-gray-300">Web App UK Govt (MoD)</h4>
             <RoleSummary text="Architected, developed and tested a secure web app for the UK MoD" />
             <Ratios ratios={SurevineMODRatios} />
-            <h4 className="prose-h4 mt-4 mb-0 text-gray-400">Web App (Cabinet Office)</h4>
+            <h4 className="prose-h4 mt-4 mb-0 text-gray-300">Web App (Cabinet Office)</h4>
             <RoleSummary text="Architected, developed and tested a secure text, audio & video communication-based web app" />
             <Ratios ratios={SurevineVideoRatios} />
-            <h4 className="prose-h4 mt-4 mb-0 text-gray-400">Web App (Cabinet Office)</h4>
+            <h4 className="prose-h4 mt-4 mb-0 text-gray-300">Web App (Cabinet Office)</h4>
             <RoleSummary text="Agile delivery of a complex high security cross-domain communication system" />
             <Ratios ratios={SurevineCommsRatios} />
-            <h4 className="prose-h4 mt-4 mb-0 text-gray-400">Security Cleared Web App (UK Govt Security)</h4>
+            <h4 className="prose-h4 mt-4 mb-0 text-gray-300">Security Cleared Web App (UK Govt Security)</h4>
             <RoleSummary text="Architected, developed and tested a secure intranet web app for the UK Govt" />
             <Ratios ratios={SurevineHQRatios} />
 
             <h3 className="prose-em text-gray-300 mb-0 mt-4">Full-Stack Engineer • Vidatec</h3>
-            <h4 className="prose-h4 mt-4 mb-0 text-gray-400">Tech Lead British Army (MoD)</h4>
+            <h4 className="prose-h4 mt-4 mb-0 text-gray-300">Tech Lead British Army (MoD)</h4>
             <RoleSummary
               text="Architected, developed and tested a Progressive Web App to support internal army communications on low bandwidth
             mobile devices"
             />
             <Ratios ratios={VidatecBritishArmyRatios} />
-            <h4 className="prose-h4 mt-4 mb-0 text-gray-400">Scrum Master • Virgin Trains</h4>
+            <h4 className="prose-h4 mt-4 mb-0 text-gray-300">Scrum Master • Virgin Trains</h4>
             <RoleSummary text="Agile delivery of Virgin Trains East Coast Travel Buddy mobile app" />
             <Ratios ratios={VidatecVirginRatios} />
-            <h4 className="prose-h4 mt-4 mb-0 text-gray-400">Full-Stack Tech Lead • TUI Travel</h4>
+            <h4 className="prose-h4 mt-4 mb-0 text-gray-300">Full-Stack Tech Lead • TUI Travel</h4>
             <RoleSummary
               text="Scoped, architected & led the development of REST APIs and native mobile apps (iOS & Android) for a range of TUI travel
         brands"
@@ -99,7 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
             <Ratios ratios={HMRCRatios} />
 
             <Divider text="Technologies &amp; Languages" />
-            <div className="text-gray-300">
+            <div className="text-gray-300 text-sm">
               Figma • HTML • CSS • React • XState • Redux • Tailwind CSS • Shadcn/UI • Headless UI • CSS-in-JS •
               TypeScript • JavaScript • Storybook • Next.js • Remix • React Router • React Testing Library • Zod • Jest
               • Cypress • Playwright • Node JS • Express • NPM • GraphQL • REST API • SOAP • Prisma • Drizzle • Postgres
