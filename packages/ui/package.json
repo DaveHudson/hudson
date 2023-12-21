@@ -11,6 +11,7 @@
     "./messages": "./src/messages.tsx",
     "./message-ai": "./src/message-ai.tsx",
     "./message-user": "./src/message-user.tsx",
+    "./spinner": "./src/spinner.tsx",
     "./chat/info-slide-over": "./src/chat/info-slide-over.tsx",
     "./chat/message-ai": "./src/chat/message-ai.tsx",
     "./chat/message-user": "./src/chat/message-user.tsx",

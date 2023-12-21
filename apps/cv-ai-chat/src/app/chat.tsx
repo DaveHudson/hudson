@@ -3,6 +3,7 @@
 import { Button } from "@repo/ui/base/button";
 import Messages from "@repo/ui/messages";
 import PromptInput from "@repo/ui/prompt-input";
+import { Spinner } from "@repo/ui/spinner";
 import { useChat } from "ai/react";
 
 export function Chat({ handler }: { handler: any }) {
@@ -20,14 +21,14 @@ export function Chat({ handler }: { handler: any }) {
 
   return (
     <div className="flex justify-center">
-      <div className="flex pb-56 w-full">
+      <div className="flex pb-40 !w-full">
         <Messages messages={messages} />
       </div>
       <br />
-      <div className="fixed bottom-0 w-10/12 md:w-1/2 z-10 dark:bg-slate-900">
-        <div className="flex w-full justify-center">{isLoading && <div>Loading...</div>}</div>
+      <div className="fixed bottom-0 !w-7/12 md:w-1/2 z-10 bg-white dark:bg-slate-900">
+        <div className="flex w-full justify-center">{isLoading && <Spinner />}</div>
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-col w-full items-center rounded-md">
+          <div className="flex flex-col items-center rounded-md">
             <div className="mt-4 flex w-full gap-x-2 overflow-x-auto whitespace-nowrap text-xs text-slate-600 dark:text-slate-300 sm:text-sm">
               {prompts.map((prompt) => {
                 return (
@@ -37,7 +38,7 @@ export function Chat({ handler }: { handler: any }) {
                 );
               })}
             </div>
-            <div className="flex flex-row w-full pt-1 pl-3 pr-3 pb-12">
+            <div className="flex flex-row w-10/12 pt-1 pl-3 pr-3 pb-12">
               <PromptInput handleInputChange={handleInputChange} input={input} disabled={isLoading} />
             </div>
           </div>

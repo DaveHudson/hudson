@@ -1763,6 +1763,26 @@ body {
   cursor: not-allowed;
 }
 
+.disabled\:ui-bg-red-400:disabled {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+
+.disabled\:ui-bg-gray-200:disabled {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+
+.disabled\:ui-bg-gray-100:disabled {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.disabled\:ui-bg-slate-100:disabled {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
 .disabled\:ui-opacity-50:disabled {
   opacity: 0.5;
 }
