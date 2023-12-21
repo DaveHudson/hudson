@@ -17,8 +17,8 @@ export default function Messages({ messages }: { messages: Message[] }) {
 
   return (
     <div className="ui-flex-1 ui-space-y-8 ui-overflow-y-auto ui-leading-6 sm:ui-text-base sm:ui-leading-7">
-      <div className="flex w-full justify-center">
-        <ChatBubbleLeftRightIcon className="h-10 w-10 stroke-2 stroke-sky-600" aria-hidden="true" />
+      <div className="ui-flex ui-w-full ui-justify-center">
+        <ChatBubbleLeftRightIcon className="ui-h-10 ui-w-10 ui-stroke-2 ui-stroke-sky-600" aria-hidden="true" />
       </div>
       {messages.map((message, index) => (
         <div key={message.id}>

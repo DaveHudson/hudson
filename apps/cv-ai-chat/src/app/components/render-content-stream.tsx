@@ -12,7 +12,7 @@ export const RenderContentStream = ({ content }: { content: any }) => {
     const contentWithoutIframe = iframe ? content.replace(iframe, "") : content;
 
     return (
-      <div>
+      <div className="prose">
         <ReactMarkdown
           components={{
             a: ({ node, ...props }) => (
@@ -20,6 +20,7 @@ export const RenderContentStream = ({ content }: { content: any }) => {
             ),
             code(props) {
               const { children, className, node, ...rest } = props;
+              console.log("className", className);
               const match = /language-(\w+)/.exec(className || "");
               return match ? (
                 // @ts-expect-error

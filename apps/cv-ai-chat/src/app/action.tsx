@@ -55,7 +55,7 @@ export async function handler({ messages }: { messages: Message[] }) {
       return (
         <>
           <RenderContentStream content={content} />
-          <RenderCode content={content} />
+          {/* <RenderCode content={content} /> */}
           <RenderVideo content={content} />
           {/* <div className="flex text-blue-500">Custom UI content rendered by the server</div> */}
         </>
