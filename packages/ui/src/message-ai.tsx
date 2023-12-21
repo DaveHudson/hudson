@@ -51,7 +51,8 @@ export default function MessageAI({ children }: { children: Message }) {
           <button
             className="hover:ui-text-blue-600"
             onClick={() => {
-              navigator.clipboard.writeText(`${children}`).then(
+              console.log(children);
+              navigator.clipboard.writeText(`${children.content}`).then(
                 () => {
                   console.log("Copying to clipboard was successful!");
                 },

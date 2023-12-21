@@ -19,10 +19,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
         </main>
         <aside className="hidden w-0 md:w-2/5 md:block bg-slate-800 border-l-2">
           <div className="p-6 prose">
-            <h2 className="text-gray-100">Full-Stack TypeScript AI Engineer</h2>
+            <h2 className="text-sky-300">Full-Stack TypeScript AI Engineer</h2>
 
             <h3 className="text-gray-100">Technologies & Languages</h3>
-            <div className="text-gray-100">
+            <div className="text-gray-300">
               Figma • HTML • CSS • React • XState • Redux • Tailwind CSS • Shadcn/UI • Headless UI • CSS-in-JS •
               TypeScript • JavaScript • Storybook • Next.js • Remix • React Router • React Testing Library • Zod • Jest
               • Cypress • Playwright • Node JS • Express • NPM • GraphQL • REST API • SOAP • Prisma • Drizzle • Postgres
@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
 
             <h3 className="text-gray-100">Experience</h3>
 
-            <ul className="text-gray-100">
+            <ul className="text-gray-300">
               <li>AI Engineer • Applification</li>
               <li>Full-Stack Engineer • Peppy Health</li>
               <li>Full-Stack Engineer • Pando</li>
