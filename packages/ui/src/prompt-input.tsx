@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import invariant from "tiny-invariant";
 
 export default function PromptInput({
@@ -6,14 +6,16 @@ export default function PromptInput({
   handleInputChange,
   disabled,
   fileUpload = false,
+  placeholder = "Message AI...",
+  textareaRef,
 }: {
   input: string;
   handleInputChange: (event: unknown) => void;
   disabled?: boolean;
   fileUpload?: boolean;
+  placeholder?: string;
+  textareaRef: React.RefObject<HTMLTextAreaElement>;
 }) {
-  const textareaRef = useRef(null);
-
   useEffect(() => {
     invariant(textareaRef.current, "Expected textarea to be defined");
     const textarea = textareaRef.current as HTMLTextAreaElement;
@@ -71,7 +73,7 @@ export default function PromptInput({
             event.currentTarget.form.dispatchEvent(formEvent);
           }
         }}
-        placeholder="Message AI..."
+        placeholder={placeholder}
         ref={textareaRef}
         disabled={disabled}
         rows={1}
