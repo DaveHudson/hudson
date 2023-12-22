@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@repo/ui/base/button";
+import { Select } from "@repo/ui/catalyst/select";
 import Messages from "@repo/ui/messages";
 import PromptInput from "@repo/ui/prompt-input";
 import { Spinner } from "@repo/ui/spinner";
@@ -71,16 +72,16 @@ export function Chat({ handler }: { handler: any }) {
                 <label htmlFor="prompt" className="block text-sm font-medium leading-6 text-gray-900 sr-only">
                   Prompt
                 </label>
-                <select
+                <Select
                   id="prompt"
                   name="prompt"
-                  className="block w-full md:w-32 rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-sky-600 md:text-sm md:leading-6"
+                  className="w-32 py-1"
                   defaultValue="CV Chat"
                   onChange={(e) => setPrompt(e.target.value)}
                 >
                   <option>CV Chat</option>
                   <option>CV Match</option>
-                </select>
+                </Select>
               </div>
               <PromptInput
                 textareaRef={textareaRef}
