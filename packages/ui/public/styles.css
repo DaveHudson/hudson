@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.3.6 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.0 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -32,9 +32,11 @@
 4. Use the user's configured `sans` font-family by default.
 5. Use the user's configured `sans` font-feature-settings by default.
 6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
 */
 
-html {
+html,
+:host {
   line-height: 1.5;
   /* 1 */
   -webkit-text-size-adjust: 100%;
@@ -44,12 +46,14 @@ html {
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: Inter var, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: Inter var, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
   font-variation-settings: normal;
   /* 6 */
+  -webkit-tap-highlight-color: transparent;
+  /* 7 */
 }
 
 /*
@@ -934,8 +938,27 @@ select {
   display: inline-flex;
 }
 
+.ui-inline-grid {
+  display: inline-grid;
+}
+
 .ui-hidden {
   display: none;
+}
+
+.ui-size-5 {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.ui-size-6 {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.ui-size-8 {
+  width: 2rem;
+  height: 2rem;
 }
 
 .ui-h-10 {
@@ -1230,6 +1253,10 @@ select {
   border-radius: calc(var(--radius) - 2px) !important;
 }
 
+.ui-rounded-\[20\%\] {
+  border-radius: 20%;
+}
+
 .ui-rounded-full {
   border-radius: 9999px;
 }
@@ -1390,6 +1417,10 @@ select {
 .ui-bg-yellow-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
+}
+
+.ui-fill-current {
+  fill: currentColor;
 }
 
 .ui-fill-sky-600 {
@@ -1574,9 +1605,17 @@ select {
   text-align: left;
 }
 
+.ui-align-middle {
+  vertical-align: middle;
+}
+
 .ui-text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.ui-text-\[48px\] {
+  font-size: 48px;
 }
 
 .ui-text-base {
@@ -1618,6 +1657,10 @@ select {
 
 .ui-font-semibold {
   font-weight: 600;
+}
+
+.ui-uppercase {
+  text-transform: uppercase;
 }
 
 .ui-leading-6 {
@@ -1779,6 +1822,10 @@ select {
 .ui-ring-black {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(0 0 0 / var(--tw-ring-opacity));
+}
+
+.ui-ring-black\/5 {
+  --tw-ring-color: rgb(0 0 0 / 0.05);
 }
 
 .ui-ring-blue-700\/10 {
@@ -2836,6 +2883,22 @@ body {
   background: hsl(var(--background));
 }
 
+.\*\:ui-col-start-1 > * {
+  grid-column-start: 1;
+}
+
+.\*\:ui-row-start-1 > * {
+  grid-row-start: 1;
+}
+
+.\*\:ui-rounded-\[20\%\] > * {
+  border-radius: 20%;
+}
+
+.\*\:ui-rounded-full > * {
+  border-radius: 9999px;
+}
+
 .file\:ui-border-0::file-selector-button {
   border-width: 0px;
 }
@@ -3095,6 +3158,22 @@ body {
   color: rgb(2 132 199 / var(--tw-text-opacity));
 }
 
+.has-\[\[data-disabled\]\]\:ui-opacity-50:has([data-disabled]) {
+  opacity: 0.5;
+}
+
+.before\:has-\[\[data-disabled\]\]\:ui-bg-zinc-950\/5:has([data-disabled])::before {
+  content: var(--tw-content);
+  background-color: rgb(9 9 11 / 0.05);
+}
+
+.before\:has-\[\[data-disabled\]\]\:ui-shadow-none:has([data-disabled])::before {
+  content: var(--tw-content);
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .data-\[disabled\]\:ui-border-zinc-950\/20[data-disabled] {
   border-color: rgb(9 9 11 / 0.2);
 }
@@ -3115,6 +3194,22 @@ body {
 
 .data-\[disabled\]\:ui-opacity-100[data-disabled] {
   opacity: 1;
+}
+
+.data-\[focus\]\:ui-outline[data-focus] {
+  outline-style: solid;
+}
+
+.data-\[focus\]\:ui-outline-2[data-focus] {
+  outline-width: 2px;
+}
+
+.data-\[focus\]\:ui-outline-offset-2[data-focus] {
+  outline-offset: 2px;
+}
+
+.data-\[focus\]\:ui-outline-blue-500[data-focus] {
+  outline-color: #3b82f6;
 }
 
 .data-\[active\]\:\[--btn-border\:theme\(colors\.zinc\.950\/15\%\)\][data-active] {
@@ -3279,253 +3374,6 @@ body {
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .dark\:ui-border-gray-700 {
-    --tw-border-opacity: 1;
-    border-color: rgb(55 65 81 / var(--tw-border-opacity));
-  }
-
-  .dark\:ui-border-white\/10 {
-    border-color: rgb(255 255 255 / 0.1);
-  }
-
-  .dark\:\!ui-bg-gray-900 {
-    --tw-bg-opacity: 1 !important;
-    background-color: rgb(17 24 39 / var(--tw-bg-opacity)) !important;
-  }
-
-  .dark\:ui-bg-gray-200 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-  }
-
-  .dark\:ui-bg-gray-700 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-  }
-
-  .dark\:ui-bg-gray-800 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-  }
-
-  .dark\:ui-bg-gray-900 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-  }
-
-  .dark\:ui-bg-white\/5 {
-    background-color: rgb(255 255 255 / 0.05);
-  }
-
-  .dark\:ui-stroke-zinc-400 {
-    stroke: #a1a1aa;
-  }
-
-  .dark\:\!ui-text-gray-300 {
-    --tw-text-opacity: 1 !important;
-    color: rgb(209 213 219 / var(--tw-text-opacity)) !important;
-  }
-
-  .dark\:ui-text-gray-300 {
-    --tw-text-opacity: 1;
-    color: rgb(209 213 219 / var(--tw-text-opacity));
-  }
-
-  .dark\:ui-text-gray-800 {
-    --tw-text-opacity: 1;
-    color: rgb(31 41 55 / var(--tw-text-opacity));
-  }
-
-  .dark\:ui-text-sky-200 {
-    --tw-text-opacity: 1;
-    color: rgb(186 230 253 / var(--tw-text-opacity));
-  }
-
-  .dark\:ui-text-slate-200 {
-    --tw-text-opacity: 1;
-    color: rgb(226 232 240 / var(--tw-text-opacity));
-  }
-
-  .dark\:ui-text-white {
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
-  }
-
-  .dark\:ui-ring-gray-700 {
-    --tw-ring-opacity: 1;
-    --tw-ring-color: rgb(55 65 81 / var(--tw-ring-opacity));
-  }
-
-  .dark\:ui-ring-gray-900 {
-    --tw-ring-opacity: 1;
-    --tw-ring-color: rgb(17 24 39 / var(--tw-ring-opacity));
-  }
-
-  .dark\:\[--btn-bg\:theme\(colors\.zinc\.600\)\] {
-    --btn-bg: #52525b;
-  }
-
-  .dark\:\[--btn-bg\:theme\(colors\.zinc\.800\)\] {
-    --btn-bg: #27272a;
-  }
-
-  .dark\:\[--btn-bg\:transparent\] {
-    --btn-bg: transparent;
-  }
-
-  .dark\:\[--btn-bg\:white\] {
-    --btn-bg: white;
-  }
-
-  .dark\:\[--btn-hover-overlay\:theme\(colors\.white\/5\%\)\] {
-    --btn-hover-overlay: rgb(255 255 255 / 5%);
-  }
-
-  .dark\:\[--btn-hover-overlay\:theme\(colors\.zinc\.950\/2\.5\%\)\] {
-    --btn-hover-overlay: rgb(9 9 11 / 2.5%);
-  }
-
-  .dark\:\[--btn-hover-overlay\:theme\(colors\.zinc\.950\/5\%\)\] {
-    --btn-hover-overlay: rgb(9 9 11 / 5%);
-  }
-
-  .dark\:\[--btn-icon\:theme\(colors\.zinc\.500\)\] {
-    --btn-icon: #71717a;
-  }
-
-  .dark\:\[--checkbox-check\:theme\(colors\.zinc\.900\)\] {
-    --checkbox-check: #18181b;
-  }
-
-  .dark\:\[--checkbox-checked-bg\:theme\(colors\.white\)\] {
-    --checkbox-checked-bg: #fff;
-  }
-
-  .dark\:\[--checkbox-checked-bg\:theme\(colors\.zinc\.600\)\] {
-    --checkbox-checked-bg: #52525b;
-  }
-
-  .dark\:\[--checkbox-checked-border\:theme\(colors\.zinc\.950\/15\%\)\] {
-    --checkbox-checked-border: rgb(9 9 11 / 15%);
-  }
-
-  .dark\:\[--radio-checked-bg\:theme\(colors\.white\)\] {
-    --radio-checked-bg: #fff;
-  }
-
-  .dark\:\[--radio-checked-bg\:theme\(colors\.zinc\.600\)\] {
-    --radio-checked-bg: #52525b;
-  }
-
-  .dark\:\[--radio-checked-border\:theme\(colors\.zinc\.950\/15\%\)\] {
-    --radio-checked-border: rgb(9 9 11 / 15%);
-  }
-
-  .dark\:\[--radio-checked-indicator\:theme\(colors\.zinc\.900\)\] {
-    --radio-checked-indicator: #18181b;
-  }
-
-  .dark\:\[--switch-bg-ring\:theme\(colors\.white\/15\%\)\] {
-    --switch-bg-ring: rgb(255 255 255 / 15%);
-  }
-
-  .dark\:\[--switch-bg-ring\:theme\(colors\.zinc\.700\/90\%\)\] {
-    --switch-bg-ring: rgb(63 63 70 / 90%);
-  }
-
-  .dark\:\[--switch-bg-ring\:transparent\] {
-    --switch-bg-ring: transparent;
-  }
-
-  .dark\:\[--switch-bg\:theme\(colors\.white\)\] {
-    --switch-bg: #fff;
-  }
-
-  .dark\:\[--switch-bg\:theme\(colors\.white\/25\%\)\] {
-    --switch-bg: rgb(255 255 255 / 25%);
-  }
-
-  .dark\:\[--switch-ring\:theme\(colors\.zinc\.700\/90\%\)\] {
-    --switch-ring: rgb(63 63 70 / 90%);
-  }
-
-  .dark\:\[--switch-ring\:transparent\] {
-    --switch-ring: transparent;
-  }
-
-  .dark\:\[--switch\:theme\(colors\.zinc\.900\)\] {
-    --switch: #18181b;
-  }
-
-  .dark\:before\:ui-hidden::before {
-    content: var(--tw-content);
-    display: none;
-  }
-
-  .dark\:hover\:ui-bg-gray-700:hover {
-    --tw-bg-opacity: 1;
-    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-  }
-
-  .dark\:hover\:ui-text-blue-600:hover {
-    --tw-text-opacity: 1;
-    color: rgb(37 99 235 / var(--tw-text-opacity));
-  }
-
-  .dark\:hover\:ui-text-gray-300:hover {
-    --tw-text-opacity: 1;
-    color: rgb(209 213 219 / var(--tw-text-opacity));
-  }
-
-  .dark\:hover\:ui-text-sky-100:hover {
-    --tw-text-opacity: 1;
-    color: rgb(224 242 254 / var(--tw-text-opacity));
-  }
-
-  .dark\:data-\[hover\]\:ui-border-white\/20[data-hover] {
-    border-color: rgb(255 255 255 / 0.2);
-  }
-
-  .data-\[invalid\]\:dark\:ui-border-red-600[data-invalid] {
-    --tw-border-opacity: 1;
-    border-color: rgb(220 38 38 / var(--tw-border-opacity));
-  }
-
-  .data-\[invalid\]\:data-\[hover\]\:dark\:ui-border-red-600[data-hover][data-invalid] {
-    --tw-border-opacity: 1;
-    border-color: rgb(220 38 38 / var(--tw-border-opacity));
-  }
-
-  .data-\[disabled\]\:dark\:ui-bg-white\/\[2\.5\%\][data-disabled] {
-    background-color: rgb(255 255 255 / 2.5%);
-  }
-
-  .dark\:data-\[active\]\:\[--btn-icon\:theme\(colors\.zinc\.400\)\][data-active] {
-    --btn-icon: #a1a1aa;
-  }
-
-  .dark\:data-\[hover\]\:\[--btn-icon\:theme\(colors\.zinc\.400\)\][data-hover] {
-    --btn-icon: #a1a1aa;
-  }
-
-  .ui-group[data-checked][data-hover] .dark\:group-data-\[checked\]\:group-data-\[hover\]\:\[--radio-indicator\:var\(--radio-checked-indicator\)\] {
-    --radio-indicator: var(--radio-checked-indicator);
-  }
-
-  .ui-group[data-disabled] .dark\:group-data-\[disabled\]\:\[--checkbox-check\:theme\(colors\.white\/50\%\)\] {
-    --checkbox-check: rgb(255 255 255 / 50%);
-  }
-
-  .ui-group[data-disabled] .dark\:group-data-\[disabled\]\:\[--radio-checked-indicator\:theme\(colors\.white\/50\%\)\] {
-    --radio-checked-indicator: rgb(255 255 255 / 50%);
-  }
-
-  .ui-group[data-hover] .dark\:group-data-\[hover\]\:\[--radio-indicator\:theme\(colors\.zinc\.700\)\] {
-    --radio-indicator: #3f3f46;
-  }
-}
-
 @media (min-width: 640px) {
   .sm\:ui-col-span-2 {
     grid-column: span 2 / span 2;
@@ -3541,6 +3389,11 @@ body {
 
   .sm\:ui-flex {
     display: flex;
+  }
+
+  .sm\:ui-size-4 {
+    width: 1rem;
+    height: 1rem;
   }
 
   .sm\:ui-w-40 {
@@ -3657,6 +3510,19 @@ body {
   .sm\:\[--anchor-offset\:-1\.375rem\] {
     --anchor-offset: -1.375rem;
   }
+
+  .sm\:after\:has-\[\[data-focus\]\]\:ui-ring-2:has([data-focus])::after {
+    content: var(--tw-content);
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+  }
+
+  .sm\:after\:has-\[\[data-focus\]\]\:ui-ring-blue-500:has([data-focus])::after {
+    content: var(--tw-content);
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+  }
 }
 
 @media (min-width: 1024px) {
@@ -3713,6 +3579,339 @@ body {
   .lg\:ui-px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .dark\:ui-border-gray-700 {
+    --tw-border-opacity: 1;
+    border-color: rgb(55 65 81 / var(--tw-border-opacity));
+  }
+
+  .dark\:ui-border-white\/10 {
+    border-color: rgb(255 255 255 / 0.1);
+  }
+
+  .dark\:\!ui-bg-gray-900 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(17 24 39 / var(--tw-bg-opacity)) !important;
+  }
+
+  .dark\:ui-bg-gray-200 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+  }
+
+  .dark\:ui-bg-gray-700 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+  }
+
+  .dark\:ui-bg-gray-800 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+  }
+
+  .dark\:ui-bg-gray-900 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+  }
+
+  .dark\:ui-bg-white\/5 {
+    background-color: rgb(255 255 255 / 0.05);
+  }
+
+  .dark\:ui-stroke-zinc-400 {
+    stroke: #a1a1aa;
+  }
+
+  .dark\:\!ui-text-gray-300 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(209 213 219 / var(--tw-text-opacity)) !important;
+  }
+
+  .dark\:ui-text-gray-300 {
+    --tw-text-opacity: 1;
+    color: rgb(209 213 219 / var(--tw-text-opacity));
+  }
+
+  .dark\:ui-text-gray-800 {
+    --tw-text-opacity: 1;
+    color: rgb(31 41 55 / var(--tw-text-opacity));
+  }
+
+  .dark\:ui-text-sky-200 {
+    --tw-text-opacity: 1;
+    color: rgb(186 230 253 / var(--tw-text-opacity));
+  }
+
+  .dark\:ui-text-slate-200 {
+    --tw-text-opacity: 1;
+    color: rgb(226 232 240 / var(--tw-text-opacity));
+  }
+
+  .dark\:ui-text-white {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+
+  .dark\:ui-ring-gray-700 {
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgb(55 65 81 / var(--tw-ring-opacity));
+  }
+
+  .dark\:ui-ring-gray-900 {
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgb(17 24 39 / var(--tw-ring-opacity));
+  }
+
+  .dark\:ui-ring-white\/5 {
+    --tw-ring-color: rgb(255 255 255 / 0.05);
+  }
+
+  .dark\:\[--btn-bg\:theme\(colors\.zinc\.600\)\] {
+    --btn-bg: #52525b;
+  }
+
+  .dark\:\[--btn-bg\:theme\(colors\.zinc\.800\)\] {
+    --btn-bg: #27272a;
+  }
+
+  .dark\:\[--btn-bg\:transparent\] {
+    --btn-bg: transparent;
+  }
+
+  .dark\:\[--btn-bg\:white\] {
+    --btn-bg: white;
+  }
+
+  .dark\:\[--btn-hover-overlay\:theme\(colors\.white\/5\%\)\] {
+    --btn-hover-overlay: rgb(255 255 255 / 5%);
+  }
+
+  .dark\:\[--btn-hover-overlay\:theme\(colors\.zinc\.950\/2\.5\%\)\] {
+    --btn-hover-overlay: rgb(9 9 11 / 2.5%);
+  }
+
+  .dark\:\[--btn-hover-overlay\:theme\(colors\.zinc\.950\/5\%\)\] {
+    --btn-hover-overlay: rgb(9 9 11 / 5%);
+  }
+
+  .dark\:\[--btn-icon\:theme\(colors\.zinc\.500\)\] {
+    --btn-icon: #71717a;
+  }
+
+  .dark\:\[--checkbox-check\:theme\(colors\.zinc\.900\)\] {
+    --checkbox-check: #18181b;
+  }
+
+  .dark\:\[--checkbox-checked-bg\:theme\(colors\.white\)\] {
+    --checkbox-checked-bg: #fff;
+  }
+
+  .dark\:\[--checkbox-checked-bg\:theme\(colors\.zinc\.600\)\] {
+    --checkbox-checked-bg: #52525b;
+  }
+
+  .dark\:\[--checkbox-checked-border\:theme\(colors\.zinc\.950\/15\%\)\] {
+    --checkbox-checked-border: rgb(9 9 11 / 15%);
+  }
+
+  .dark\:\[--radio-checked-bg\:theme\(colors\.white\)\] {
+    --radio-checked-bg: #fff;
+  }
+
+  .dark\:\[--radio-checked-bg\:theme\(colors\.zinc\.600\)\] {
+    --radio-checked-bg: #52525b;
+  }
+
+  .dark\:\[--radio-checked-border\:theme\(colors\.zinc\.950\/15\%\)\] {
+    --radio-checked-border: rgb(9 9 11 / 15%);
+  }
+
+  .dark\:\[--radio-checked-indicator\:theme\(colors\.zinc\.900\)\] {
+    --radio-checked-indicator: #18181b;
+  }
+
+  .dark\:\[--switch-bg-ring\:theme\(colors\.white\/15\%\)\] {
+    --switch-bg-ring: rgb(255 255 255 / 15%);
+  }
+
+  .dark\:\[--switch-bg-ring\:theme\(colors\.zinc\.700\/90\%\)\] {
+    --switch-bg-ring: rgb(63 63 70 / 90%);
+  }
+
+  .dark\:\[--switch-bg-ring\:transparent\] {
+    --switch-bg-ring: transparent;
+  }
+
+  .dark\:\[--switch-bg\:theme\(colors\.white\)\] {
+    --switch-bg: #fff;
+  }
+
+  .dark\:\[--switch-bg\:theme\(colors\.white\/25\%\)\] {
+    --switch-bg: rgb(255 255 255 / 25%);
+  }
+
+  .dark\:\[--switch-ring\:theme\(colors\.zinc\.700\/90\%\)\] {
+    --switch-ring: rgb(63 63 70 / 90%);
+  }
+
+  .dark\:\[--switch-ring\:transparent\] {
+    --switch-ring: transparent;
+  }
+
+  .dark\:\[--switch\:theme\(colors\.zinc\.900\)\] {
+    --switch: #18181b;
+  }
+
+  .dark\:\*\:ui-bg-zinc-800 > * {
+    --tw-bg-opacity: 1;
+    background-color: rgb(39 39 42 / var(--tw-bg-opacity));
+  }
+
+  .dark\:\*\:ui-text-white > * {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+
+  .dark\:before\:ui-hidden::before {
+    content: var(--tw-content);
+    display: none;
+  }
+
+  .dark\:hover\:ui-bg-gray-700:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+  }
+
+  .dark\:hover\:ui-text-blue-600:hover {
+    --tw-text-opacity: 1;
+    color: rgb(37 99 235 / var(--tw-text-opacity));
+  }
+
+  .dark\:hover\:ui-text-gray-300:hover {
+    --tw-text-opacity: 1;
+    color: rgb(209 213 219 / var(--tw-text-opacity));
+  }
+
+  .dark\:hover\:ui-text-sky-100:hover {
+    --tw-text-opacity: 1;
+    color: rgb(224 242 254 / var(--tw-text-opacity));
+  }
+
+  .dark\:disabled\:ui-bg-slate-600:disabled {
+    --tw-bg-opacity: 1;
+    background-color: rgb(71 85 105 / var(--tw-bg-opacity));
+  }
+
+  .dark\:disabled\:ui-bg-slate-700:disabled {
+    --tw-bg-opacity: 1;
+    background-color: rgb(51 65 85 / var(--tw-bg-opacity));
+  }
+
+  .dark\:data-\[hover\]\:data-\[disabled\]\:ui-border-white\/15[data-disabled][data-hover] {
+    border-color: rgb(255 255 255 / 0.15);
+  }
+
+  .dark\:data-\[hover\]\:ui-border-white\/20[data-hover] {
+    border-color: rgb(255 255 255 / 0.2);
+  }
+
+  .data-\[disabled\]\:dark\:ui-border-white\/15[data-disabled] {
+    border-color: rgb(255 255 255 / 0.15);
+  }
+
+  .data-\[invalid\]\:dark\:ui-border-red-600[data-invalid] {
+    --tw-border-opacity: 1;
+    border-color: rgb(220 38 38 / var(--tw-border-opacity));
+  }
+
+  .data-\[invalid\]\:data-\[hover\]\:dark\:ui-border-red-600[data-hover][data-invalid] {
+    --tw-border-opacity: 1;
+    border-color: rgb(220 38 38 / var(--tw-border-opacity));
+  }
+
+  .data-\[disabled\]\:dark\:ui-bg-white\/\[2\.5\%\][data-disabled] {
+    background-color: rgb(255 255 255 / 2.5%);
+  }
+
+  .dark\:data-\[active\]\:\[--btn-icon\:theme\(colors\.zinc\.400\)\][data-active] {
+    --btn-icon: #a1a1aa;
+  }
+
+  .dark\:data-\[hover\]\:\[--btn-icon\:theme\(colors\.zinc\.400\)\][data-hover] {
+    --btn-icon: #a1a1aa;
+  }
+
+  .ui-group[data-checked][data-hover] .dark\:group-data-\[checked\]\:group-data-\[hover\]\:\[--radio-indicator\:var\(--radio-checked-indicator\)\] {
+    --radio-indicator: var(--radio-checked-indicator);
+  }
+
+  .ui-group[data-disabled] .dark\:group-data-\[disabled\]\:\[--checkbox-check\:theme\(colors\.white\/50\%\)\] {
+    --checkbox-check: rgb(255 255 255 / 50%);
+  }
+
+  .ui-group[data-disabled] .dark\:group-data-\[disabled\]\:\[--radio-checked-indicator\:theme\(colors\.white\/50\%\)\] {
+    --radio-checked-indicator: rgb(255 255 255 / 50%);
+  }
+
+  .ui-group[data-hover] .dark\:group-data-\[hover\]\:\[--radio-indicator\:theme\(colors\.zinc\.700\)\] {
+    --radio-indicator: #3f3f46;
+  }
+}
+
+@media (forced-colors: active) {
+  .forced-colors\:ui-stroke-\[CanvasText\] {
+    stroke: CanvasText;
+  }
+
+  .forced-colors\:ui-outline {
+    outline-style: solid;
+  }
+
+  .forced-colors\:\[--btn-icon\:ButtonText\] {
+    --btn-icon: ButtonText;
+  }
+
+  .forced-colors\:\[--checkbox-check\:HighlightText\] {
+    --checkbox-check: HighlightText;
+  }
+
+  .forced-colors\:\[--checkbox-checked-bg\:Highlight\] {
+    --checkbox-checked-bg: Highlight;
+  }
+
+  .forced-colors\:\[--switch-bg\:Highlight\] {
+    --switch-bg: Highlight;
+  }
+
+  .forced-colors\:data-\[hover\]\:\[--btn-icon\:ButtonText\][data-hover] {
+    --btn-icon: ButtonText;
+  }
+
+  .ui-group[data-disabled] .forced-colors\:group-data-\[disabled\]\:\[--checkbox-check\:Highlight\] {
+    --checkbox-check: Highlight;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  @media (forced-colors: active) {
+    .dark\:forced-colors\:\[--checkbox-check\:HighlightText\] {
+      --checkbox-check: HighlightText;
+    }
+
+    .dark\:forced-colors\:\[--checkbox-checked-bg\:Highlight\] {
+      --checkbox-checked-bg: Highlight;
+    }
+
+    .dark\:forced-colors\:\[--switch-bg\:Highlight\] {
+      --switch-bg: Highlight;
+    }
+
+    .ui-group[data-disabled] .dark\:forced-colors\:group-data-\[disabled\]\:\[--checkbox-check\:Highlight\] {
+      --checkbox-check: Highlight;
+    }
   }
 }
 

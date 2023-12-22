@@ -1,18 +1,12 @@
-import { SunIcon } from "@heroicons/react/20/solid";
-import { cn } from "../lib/utils";
 import { Message } from "ai";
+import { Avatar } from "./catalyst/avatar";
+import profile from "./profile.jpg";
 
 export default function MessageAI({ children }: { children: Message }) {
   return (
     <div className="ui-flex">
       <div className="ui-flex ui-flex-row ui-px-4 ui-y-1">
-        <span
-          className={cn(
-            "ui-bg-yellow-500 ui-h-6 ui-w-6 ui-rounded-full ui-flex ui-items-center ui-justify-center ui-ring-8 ui-ring-white dark:ui-ring-gray-900"
-          )}
-        >
-          <SunIcon aria-hidden="true" className="ui-h-4 ui-w-4 ui-text-white" />
-        </span>
+        <Avatar className="ui-size-8" src={profile.src} />
       </div>
 
       <div className="ui-flex ui-w-full ui-flex-col ui-items-start">

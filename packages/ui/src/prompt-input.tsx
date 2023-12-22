@@ -62,7 +62,7 @@ export default function PromptInput({
       )}
 
       <textarea
-        className="ui-block ui-w-full ui-rounded-md ui-border-0 ui-py-1.5 dark:ui-bg-gray-900 ui-text-gray-900 dark:ui-text-gray-300 ui-shadow-sm ui-ring-1 ui-ring-inset ui-ring-sky-700 dark:ui-ring-gray-700 placeholder:ui-text-gray-400 focus:ui-ring-2 focus:ui-ring-inset focus:ui-ring-sky-600 sm:ui-text-sm sm:ui-leading-6 disabled:ui-bg-slate-100"
+        className="ui-block ui-w-full ui-rounded-md ui-border-0 ui-py-1.5 dark:ui-bg-gray-900 ui-text-gray-900 dark:ui-text-gray-300 ui-shadow-sm ui-ring-1 ui-ring-inset ui-ring-sky-700 dark:ui-ring-gray-700 placeholder:ui-text-gray-400 focus:ui-ring-2 focus:ui-ring-inset focus:ui-ring-sky-600 sm:ui-text-sm sm:ui-leading-6 disabled:ui-bg-slate-100 dark:disabled:ui-bg-slate-700"
         id="prompt"
         onChange={handleInputChange}
         onKeyDown={(event) => {
