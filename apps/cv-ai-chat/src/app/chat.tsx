@@ -54,7 +54,7 @@ export function Chat({ handler }: { handler: any }) {
         >
           <div className="flex flex-col items-center rounded-md">
             {prompt === "CV Chat" && (
-              <div className="mt-4 flex w-full gap-x-2 overflow-x-auto whitespace-nowrap text-xs text-slate-600 dark:text-slate-300 sm:text-sm">
+              <div className="mt-4 flex w-full gap-x-2 overflow-x-auto whitespace-nowrap text-xs text-slate-600 dark:text-slate-300 md:text-sm">
                 {prompts.map((prompt) => {
                   return (
                     <Button className="mb-2" variant="outline" size="sm" onClick={() => setInput(prompt)} key={prompt}>
@@ -65,7 +65,8 @@ export function Chat({ handler }: { handler: any }) {
               </div>
             )}
 
-            <div className="flex flex-row w-11/12 sm:w-full pt-2 pb-12 space-x-2">
+            <div className="flex md:flex-row flex-col w-11/12 md:w-full pt-2 pb-12 md:space-x-2 space-y-2 md:space-y-0.5">
+              {/* TODO: Refactor select component into UI package */}
               <div className="flex items-center">
                 <label htmlFor="prompt" className="block text-sm font-medium leading-6 text-gray-900 sr-only">
                   Prompt
@@ -73,7 +74,7 @@ export function Chat({ handler }: { handler: any }) {
                 <select
                   id="prompt"
                   name="prompt"
-                  className="block max-w-sm rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-sky-600 sm:text-sm sm:leading-6"
+                  className="block w-full md:w-32 rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-sky-600 md:text-sm md:leading-6"
                   defaultValue="CV Chat"
                   onChange={(e) => setPrompt(e.target.value)}
                 >

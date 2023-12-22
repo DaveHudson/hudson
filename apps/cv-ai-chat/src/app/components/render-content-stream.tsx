@@ -12,7 +12,7 @@ export const RenderContentStream = ({ content }: { content: any }) => {
     const contentWithoutIframe = iframe ? content.replace(iframe, "") : content;
 
     return (
-      <div className="prose">
+      <div className="prose dark:text-slate-200">
         <ReactMarkdown
           components={{
             a: ({ node, ...props }) => (

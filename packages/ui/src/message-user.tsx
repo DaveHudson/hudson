@@ -13,7 +13,7 @@ export default function MessageUser({ children }: { children: React.ReactNode })
           <UserIcon aria-hidden="true" className="ui-h-4 ui-w-4 ui-text-white" />
         </span>
       </div>
-      <div className="ui-flex ui-max-w-2xl ui-items-center ui-text-sky-900 ui-font-medium">
+      <div className="ui-flex ui-max-w-2xl ui-items-center ui-text-sky-900 dark:ui-text-slate-200 ui-font-medium">
         <p>{children}</p>
       </div>
     </div>
