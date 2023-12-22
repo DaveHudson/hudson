@@ -31,7 +31,7 @@ export default function PromptInput({
   }, []);
 
   return (
-    <>
+    <div className="ui-flex ui-flex-row ui-w-full ui-space-x-2">
       <label className="ui-sr-only" htmlFor="prompt">
         Enter your prompt
       </label>
@@ -80,7 +80,7 @@ export default function PromptInput({
         value={input}
         autoFocus
       />
-      <div className="flex items-center">
+      <div className="ui-flex ui-items-center">
         <button
           className="ui-inline-flex hover:ui-text-blue-600 dark:ui-text-slate-200 dark:hover:ui-text-blue-600 sm:ui-p-2"
           disabled={disabled}
@@ -104,6 +104,6 @@ export default function PromptInput({
           <span className="ui-sr-only">Send message</span>
         </button>
       </div>
-    </>
+    </div>
   );
 }

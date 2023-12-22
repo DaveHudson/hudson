@@ -66,7 +66,7 @@ export function Chat({ handler }: { handler: any }) {
               </div>
             )}
 
-            <div className="flex md:flex-row flex-col w-11/12 md:w-full pt-2 pb-12 md:space-x-2 space-y-2 md:space-y-0.5">
+            <div className="flex flex-col w-full pt-2 pb-12 md:space-x-2 space-y-2">
               {/* TODO: Refactor select component into UI package */}
               <div className="flex items-center">
                 <label htmlFor="prompt" className="block text-sm font-medium leading-6 text-gray-900 sr-only">
@@ -75,7 +75,7 @@ export function Chat({ handler }: { handler: any }) {
                 <Select
                   id="prompt"
                   name="prompt"
-                  className="w-32 py-1"
+                  className="w-full ml-2 mr-8 sm:ml-2 sm:mr-12 md:ml-4 md:mr-10 py-1"
                   defaultValue="CV Chat"
                   onChange={(e) => setPrompt(e.target.value)}
                 >
