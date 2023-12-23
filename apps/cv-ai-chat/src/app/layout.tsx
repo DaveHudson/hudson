@@ -20,6 +20,8 @@ import {
   VidatecTUIRatios,
   VidatecVirginRatios,
 } from "./utils/cv-ratios";
+import { Badge } from "@repo/ui/catalyst/badge";
+import { currentAvailability } from "./utils/availability";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,16 +40,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
         <aside className="hidden w-0 md:w-2/5 md:block bg-slate-900 border-l-2 overflow-auto">
           <div className="p-6 pr-0 prose">
             <h2 className="text-sky-500">Full-Stack TypeScript AI Engineer</h2>
-
+            <div className="flex space-x-2 text-sm items-center text-slate-100">
+              <span>Availability:</span> <Badge color="sky">{currentAvailability}</Badge>
+            </div>
             <Divider text="Experience" />
             <h3 className="prose-em text-gray-300 mt-0 mb-0">AI Engineer • Applification</h3>
             <RoleSummary text="Open-source AI Engineer" />
             <Ratios ratios={AIEngineerRatios} />
-
             <h3 className="prose-em text-gray-300 mb-0 mt-4">Full-Stack Engineer • Peppy Health</h3>
             <RoleSummary text="Transformed architecture of complex brownfield web app with zero tests &amp; outdated design patterns, supporting practitioners to aid growth of Peppy to £12m ARR" />
             <Ratios ratios={PeppyRatios} />
-
             <h3 className="prose-em text-gray-300 mb-0 mt-4">Full-Stack Engineer • Pando</h3>
             <h4 className="prose-h4 mt-2 mb-0 text-gray-300">Pando Admin</h4>
             <RoleSummary
@@ -58,7 +60,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
             <h4 className="prose-h4 mt-4 mb-0 text-gray-300">Pando Access</h4>
             <RoleSummary text="Designed &amp; built proof of concept prototype for Pando Access in 4 weeks, across Web, Mobile & API" />
             <Ratios ratios={PandoAccessRatios} />
-
             <h3 className="prose-em text-gray-300 mb-0 mt-4">Full-Stack Engineer • Surevine</h3>
             <h4 className="prose-h4 mt-2 mb-0 text-gray-300">Web App UK Govt (MoD)</h4>
             <RoleSummary text="Architected, developed and tested a secure web app for the UK MoD" />
@@ -72,7 +73,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
             <h4 className="prose-h4 mt-4 mb-0 text-gray-300">Security Cleared Web App (UK Govt Security)</h4>
             <RoleSummary text="Architected, developed and tested a secure intranet web app for the UK Govt" />
             <Ratios ratios={SurevineHQRatios} />
-
             <h3 className="prose-em text-gray-300 mb-0 mt-4">Full-Stack Engineer • Vidatec</h3>
             <h4 className="prose-h4 mt-4 mb-0 text-gray-300">Tech Lead British Army (MoD)</h4>
             <RoleSummary
@@ -89,15 +89,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
         brands"
             />
             <Ratios ratios={VidatecTUIRatios} />
-
             <h3 className="prose-h3 mb-0 mt-4 text-gray-300">Full-Stack Engineer • Entrepreneurs’ Forum</h3>
             <RoleSummary text="Scoped, architected, developed &amp; tested an API &amp; native mobile app for the Entrepreneurs’ Forum" />
             <Ratios ratios={EntForumRatios} />
-
             <h3 className="prose-h3  mt-4 mb-0 text-gray-300">Scrum Master • HMRC</h3>
             <RoleSummary text="Scrum Master of a co-located team of 17, delivering Personal Tax Repayments, Company Car, Medical Benefits & Tax Estimation services" />
             <Ratios ratios={HMRCRatios} />
-
             <Divider text="Technologies &amp; Languages" />
             <div className="text-gray-300 text-sm">
               Figma • HTML • CSS • React • XState • Redux • Tailwind CSS • Shadcn/UI • Headless UI • CSS-in-JS •

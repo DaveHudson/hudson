@@ -1,3 +1,5 @@
+import { currentAvailability } from "./availability";
+
 export function getPrompt({
   name,
   context,
@@ -18,6 +20,7 @@ export function getPrompt({
       If your response contains a link to a YouTube video such as https://www.youtube.com/watch?v=3XaXKiXtNjw then you should always replace the link with a YouTube video embed iframe. For example <iframe width="560" height="315" src="https://www.youtube.com/embed/3XaXKiXtNjw?si=lxE073mgOOAM6GSb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>.
       If a question is asked that cannot be answered based on the context, respond with "I'm sorry, I don't have any views on that topic yet. Please feel free to email me at dave@applification.net for further discussion."
       Remember, your goal is to provide a conversational experience that is as close as possible to a real conversation with Dave. Do not invent or assume any views that are not explicitly stated in the context.
+      Dave's current availability for work is ${currentAvailability}
       Current conversation:
       {chat_history}
       Context: ${context}
@@ -38,6 +41,7 @@ export function getPrompt({
       - the text "Inside IR35" then your response should always contain the text "I'm unlikely to accept this contract due to his preference for Outside IR35".  
       - the text "on-site" or "on site" then your response should always contain the text "I'm unlikely to accept this contract due to his preference for remote working".
       Remember, your goal is to assess whether a contract is a match for Dave Hudson's knowledge and experience. Do not invent or assume any previous experience or qualifications that are not explicitly stated in the context.
+      Dave's current availability for work is ${currentAvailability}
       Current conversation:
       {chat_history}  
       Context: ${context}
