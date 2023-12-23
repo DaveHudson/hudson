@@ -10,7 +10,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.18",
+    "@heroicons/react": "^2.1.1",
     "@repo/ui": "*",
     "@sentry/nextjs": "^7.90.0",
     "ai": "^2.2.29",

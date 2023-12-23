@@ -18,7 +18,7 @@ export function Select({ className, multiple, ...props }: HeadlessSelectProps) {
         "dark:before:ui-hidden",
 
         // Focus ring
-        "after:ui-pointer-events-none after:ui-absolute after:ui-inset-0 after:ui-rounded-lg after:ui-ring-inset after:ui-ring-transparent sm:after:has-[[data-focus]]:ui-ring-2 sm:after:has-[[data-focus]]:ui-ring-blue-500",
+        "after:ui-pointer-events-none after:ui-absolute after:ui-inset-0 after:ui-rounded-lg after:ui-ring-inset after:ui-ring-transparent sm:after:has-[[data-focus]]:ui-ring-2 sm:after:has-[[data-focus]]:ui-ring-sky-600",
 
         // Disabled state
         "has-[[data-disabled]]:ui-opacity-50 before:has-[[data-disabled]]:ui-bg-zinc-950/5 before:has-[[data-disabled]]:ui-shadow-none",
@@ -61,7 +61,7 @@ export function Select({ className, multiple, ...props }: HeadlessSelectProps) {
       {!multiple && (
         <span className="ui-pointer-events-none ui-absolute ui-inset-y-0 ui-right-0 ui-flex ui-items-center ui-pr-2">
           <svg
-            className="ui-size-5 ui-stroke-zinc-500 group-has-[[data-disabled]]:sui-troke-zinc-600 sm:ui-size-4 dark:ui-stroke-zinc-400 forced-colors:ui-stroke-[CanvasText]"
+            className="ui-size-5 ui-stroke-zinc-500 group-has-[[data-disabled]]:ui-stroke-zinc-600 sm:ui-size-4 dark:ui-stroke-zinc-400 forced-colors:ui-stroke-[CanvasText]"
             viewBox="0 0 16 16"
             aria-hidden="true"
             fill="none"

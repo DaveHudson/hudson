@@ -31,13 +31,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <html className="h-full" lang="en">
-      <body className={`${inter.className} h-full flex flex-row`}>
+      <body className={`${inter.className} h-full flex flex-row !dark:bg-slate-100`}>
         <main className="py-10 w-full md:w-3/5 overflow-auto">
           <div className="px-4 sm:px-6 lg:px-8">{children}</div>
         </main>
-        <aside className="hidden w-0 md:w-2/5 md:block bg-slate-800 border-l-2 overflow-auto">
+        <aside className="hidden w-0 md:w-2/5 md:block bg-slate-900 border-l-2 overflow-auto">
           <div className="p-6 pr-0 prose">
-            <h2 className="text-sky-300">Full-Stack TypeScript AI Engineer</h2>
+            <h2 className="text-sky-500">Full-Stack TypeScript AI Engineer</h2>
 
             <Divider text="Experience" />
             <h3 className="prose-em text-gray-300 mt-0 mb-0">AI Engineer • Applification</h3>
