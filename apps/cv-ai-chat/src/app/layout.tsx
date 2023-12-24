@@ -22,6 +22,7 @@ import {
 } from "./utils/cv-ratios";
 import { Badge } from "@repo/ui/catalyst/badge";
 import { currentAvailability } from "./utils/availability";
+import { languages } from "./utils/languages";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -96,14 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
             <RoleSummary text="Scrum Master of a co-located team of 17, delivering Personal Tax Repayments, Company Car, Medical Benefits & Tax Estimation services" />
             <Ratios ratios={HMRCRatios} />
             <Divider text="Technologies &amp; Languages" />
-            <div className="text-gray-300 text-sm">
-              Figma • HTML • CSS • React • XState • Redux • Tailwind CSS • Shadcn/UI • Headless UI • CSS-in-JS •
-              TypeScript • JavaScript • Storybook • Next.js • Remix • React Router • React Testing Library • Zod • Jest
-              • Cypress • Playwright • Node JS • Express • NPM • GraphQL • REST API • SOAP • Prisma • Drizzle • Postgres
-              • MySQL • MongoDB • AWS • AWS Amplify • AWS Serverless • Lambda • Cognito • Auth.JS • Vercel • Fly.io •
-              Docker • CI/CD • GIT • VSCode • Slack • LangChain • AI SDK • Open AI • Hugging Face • SendBird • XMPP •
-              Open Fire • JWT • React Native • iOS • Android • Expo • Fastlane • Python • .Net
-            </div>
+            <div className="text-gray-300 text-sm">{languages}</div>
           </div>
         </aside>
       </body>
