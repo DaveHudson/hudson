@@ -70,11 +70,3 @@ body {
   color: hsl(var(--foreground));
   background: hsl(var(--background));
 }
-
-/* hack to get catalyst working */
-select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: transparent;
-}
