@@ -23,6 +23,7 @@ import {
 import { Badge } from "@repo/ui/catalyst/badge";
 import { currentAvailability } from "./utils/availability";
 import { languages } from "./utils/languages";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -100,6 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
             <div className="text-gray-300 text-sm">{languages}</div>
           </div>
         </aside>
+        <Analytics />
       </body>
     </html>
   );
