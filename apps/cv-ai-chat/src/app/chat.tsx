@@ -80,6 +80,7 @@ export function Chat({ handler }: { handler: any }) {
                 >
                   <option>CV Chat</option>
                   <option>CV Match</option>
+                  <option>Cover Letter</option>
                 </Select>
               </div>
               <PromptInput
@@ -90,7 +91,9 @@ export function Chat({ handler }: { handler: any }) {
                 placeholder={
                   prompt === "CV Chat"
                     ? "Chat with AI about my CV"
-                    : "Paste in a job description to see if it is a good match"
+                    : prompt === "CV Match"
+                      ? "Paste in a job description to see if it is a good match"
+                      : "Paste in a job description to generate a personalised cover letter"
                 }
                 fileUpload={false}
               />

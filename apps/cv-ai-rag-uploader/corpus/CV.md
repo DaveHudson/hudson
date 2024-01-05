@@ -1,6 +1,6 @@
 # Full-Stack TypeScript Engineer
 
-Dave Hudson • dave@applification.net • UK
+[Dave Hudson](mailto:dave@applification.net) • UK
 [Github Profile](https://github.com/DaveHudson) • [LinkedIn Profile](https://www.linkedin.com/in/hudsond/) • [Blog](https://applification.net/)
 
 ## Select Achievements
@@ -61,9 +61,9 @@ Built Pando Design System • [https://osuikit.netlify.app](https://osuikit.netl
 Architected front-end of Pando Access product
 Built web app wrapper in React Native to render Pando Access across iOS & Android
 
-### Full-Stack Engineer • Surevine
+### Full-Stack Engineer • Surevine (Cyber Security)
 
-CyberTech • Contract Remote, London • May 2018 - Feb 2020
+Surevine • Contract Remote, London • May 2018 - Feb 2020
 
 #### Web App UK Govt (MoD)
 
