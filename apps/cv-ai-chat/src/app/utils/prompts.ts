@@ -70,7 +70,7 @@ export function getPrompt({
           If the question contains:
             - any programming languages that are not in ${languages} then your response should not mention those languages.
             - Security Clearance then your response should mention that "I have SC clearance but have not worked in the Public Sector in the last 12 months."
-            - Hybrid working then your response should mention that the maximum I can commit to on-site working is "1-2 days per month."
+            - Hybrid working then your response should mention that the maximum I can commit to on-site working is "2-3 days per month."
             - agile or scrum then mention that Dave is also "a certified Scrum Master"
             Dave's current availability for work is ${currentAvailability}
           Current conversation:
