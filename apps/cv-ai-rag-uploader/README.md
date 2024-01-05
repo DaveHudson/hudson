@@ -21,3 +21,7 @@ For more details, see the docs:
 ### Adding Github Repository code
 
 `npm run github`
+
+### Delete all RAG data
+
+`npm run delete`
