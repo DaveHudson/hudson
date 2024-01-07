@@ -24,6 +24,7 @@ import { Badge } from "@repo/ui/catalyst/badge";
 import { currentAvailability } from "./utils/availability";
 import { languages } from "./utils/languages";
 import { Analytics } from "@vercel/analytics/react";
+import { PhoneIcon, CalendarDaysIcon } from "@heroicons/react/24/outline";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,10 +41,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
           <div className="px-4 sm:px-6 lg:px-8">{children}</div>
         </main>
         <aside className="hidden w-0 md:w-2/5 md:block bg-slate-900 border-l-2 overflow-auto">
-          <div className="p-6 pr-0 prose">
-            <h2 className="text-sky-500">Full-Stack TypeScript AI Engineer</h2>
+          <div className="p-6 pr-0 prose space-y-2">
+            <h2 className="text-slate-200">Full-Stack TypeScript AI Engineer</h2>
             <div className="flex space-x-2 text-sm items-center text-slate-100">
-              <span>Availability:</span> <Badge color="sky">{currentAvailability}</Badge>
+              <PhoneIcon className="h-5 w-5 inline-block mr-1 -mt-1 stroke-white" />
+              <Badge color="sky">
+                <a className="text-sky-300" href="tel:+447700142760">
+                  +447700142760
+                </a>
+              </Badge>
+            </div>
+            <div className="flex space-x-2 text-sm items-center text-slate-100">
+              <CalendarDaysIcon className="h-5 w-5 inline-block mr-1 -mt-1 stroke-white" />
+              <Badge color="sky">{currentAvailability} availability</Badge>
             </div>
             <Divider text="Experience" />
             <h3 className="prose-em text-gray-300 mt-0 mb-0">AI Engineer • Applification</h3>
