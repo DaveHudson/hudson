@@ -26,6 +26,7 @@ type ChainInputType = {
 
 const model = new ChatOpenAI({
   modelName: "gpt-4-0613",
+  temperature: 0,
 });
 
 const httpResponseOutputParser = new HttpResponseOutputParser({
