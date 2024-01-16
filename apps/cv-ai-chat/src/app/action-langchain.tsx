@@ -5,10 +5,10 @@ import { experimental_StreamingReactResponse } from "ai";
 import { getContext } from "./utils/getContext";
 import { RenderContentStream } from "./components/render-content-stream";
 import { RenderVideo } from "./components/render-video";
-import { ChatOpenAI } from "langchain/chat_models/openai";
-import { PromptTemplate } from "langchain/prompts";
-import { RunnablePassthrough, RunnableSequence } from "langchain/runnables";
-import { StringOutputParser } from "langchain/schema/output_parser";
+import { ChatOpenAI } from "@langchain/openai";
+import { PromptTemplate } from "@langchain/core/prompts";
+import { RunnablePassthrough, RunnableSequence } from "@langchain/core/runnables";
+import { StringOutputParser } from "@langchain/core/output_parsers";
 import { formatAIChatHistory } from "./utils/formatChatHistory";
 import { HttpResponseOutputParser } from "langchain/output_parsers";
 import { getLangChainPrompt } from "./utils/prompts";
@@ -64,7 +64,7 @@ export async function handler({ messages, data }: { messages: Message[]; data: a
     CONDENSE_QUESTION_PROMPT,
     model,
     new StringOutputParser(),
-  ]);
+  ]).withConfig({ runName: "standaloneQuestion" });
 
   const answerChain = RunnableSequence.from([
     {
@@ -76,9 +76,12 @@ export async function handler({ messages, data }: { messages: Message[]; data: a
     },
     ANSWER_PROMPT,
     model,
-  ]);
+  ]).withConfig({ runName: "answer" });
 
-  const finalRetrievalChain = standaloneQuestionChain.pipe(answerChain).pipe(httpResponseOutputParser);
+  const finalRetrievalChain = standaloneQuestionChain
+    .pipe(answerChain)
+    .pipe(httpResponseOutputParser)
+    .withConfig({ runName: "CVQuery" });
 
   // * Stream the response passing in the params needed
   const stream = await finalRetrievalChain.stream({

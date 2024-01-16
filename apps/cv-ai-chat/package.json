@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
+    "@langchain/community": "^0.0.17",
+    "@langchain/openai": "^0.0.12",
     "@repo/ui": "*",
     "@sentry/nextjs": "^7.90.0",
     "@vercel/analytics": "^1.1.1",

@@ -1,7 +1,7 @@
 import invariant from "tiny-invariant";
 import { createClient } from "@supabase/supabase-js";
-import { SupabaseVectorStore } from "langchain/vectorstores/supabase";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
+import { OpenAIEmbeddings } from "@langchain/openai";
 
 export function combineDocuments(docs) {
   return docs.map((doc) => doc.pageContent).join("\n\n");
