@@ -1,3 +1,5 @@
+# What did you do at Peppy?
+
 ## Architectural Review of Admin Panel
 
 Admin Panel was a Create React App (CRA) client side rendered React application that contained a lot of overly-complex code built up over rapid iterations of start-up life.

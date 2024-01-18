@@ -1,3 +1,5 @@
+# React Architecture
+
 React is primarily two things:
 
 - A UI library to "Build encapsulated components that manage their own state" .
