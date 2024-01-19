@@ -12,8 +12,6 @@ export async function handler({ messages, data }: { messages: Message[]; data: a
   // console.log("currentMessageContent", currentMessageContent);
 
   const chain = new RemoteRunnable({
-    // url: "https://web-production-09bc.up.railway.app/cv/",
-    // url: "http://127.0.0.1:8000/cv/",
     url: `${process.env.LANGCHAIN_LANGSERVE_API}`,
     options: {
       timeout: 100000,
