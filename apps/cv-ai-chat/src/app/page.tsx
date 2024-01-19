@@ -1,5 +1,4 @@
-// import { handler } from "./action";
-import { handler } from "./action-langchain";
+import { handler } from "./action";
 import { Chat } from "./chat";
 
 export const runtime = "edge";
