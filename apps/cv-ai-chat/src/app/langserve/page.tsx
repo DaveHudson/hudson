@@ -1,4 +1,4 @@
-import { handler } from "../action-langserve";
+import { handler } from "./action-langserve";
 import { Chat } from "../chat";
 
 export const runtime = "edge";

@@ -10,18 +10,38 @@ For more details, see the docs:
 
 - [https://js.langchain.com/docs/integrations/vectorstores/supabase](https://js.langchain.com/docs/integrations/vectorstores/supabase)
 
-### Adding Markdown documents
+### Supabase Vector
 
-`npm run docs`
+#### Adding Markdown documents Supabase
 
-### Adding blog posts
+`npm run sb-md`
 
-`npm run blog`
+#### Adding blog posts Supabase
 
-### Adding Github Repository code
+`npm run sb-blog`
 
-`npm run github`
+#### Adding Github Repository code Supabase
 
-### Delete all RAG data
+`npm run sb-github`
 
-`npm run delete`
+#### Delete all RAG data Supabase
+
+`npm run sb-delete`
+
+### Pinecone Vector
+
+#### Adding Markdown documents Pinecone
+
+`npm run pc-md`
+
+#### Adding blog posts Pinecone
+
+`npm run pc-blog`
+
+#### Adding Github Repository code Pinecone
+
+`npm run pc-github`
+
+#### Delete all RAG data Pinecone
+
+`npm run pc-delete`

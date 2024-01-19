@@ -2,8 +2,8 @@
 
 import type { Message } from "ai";
 import { LangChainStream, StreamingTextResponse, experimental_StreamingReactResponse } from "ai";
-import { RenderContentStream } from "./components/render-content-stream";
-import { RenderVideo } from "./components/render-video";
+import { RenderContentStream } from "../components/render-content-stream";
+import { RenderVideo } from "../components/render-video";
 import { RemoteRunnable } from "langchain/runnables/remote";
 
 export async function handler({ messages, data }: { messages: Message[]; data: any }) {

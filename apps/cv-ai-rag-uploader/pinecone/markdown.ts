@@ -22,7 +22,6 @@ const docs = await loader.load();
 // console.log("num docs", docs.length);
 
 const pinecone = new Pinecone();
-
 const pineconeIndex = pinecone.Index(pineconeIndexName);
 
 // For each document in docs, split into chunks useing RecursivieCharacterTextSplitter from LangChain
