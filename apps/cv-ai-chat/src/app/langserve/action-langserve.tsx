@@ -7,12 +7,26 @@ import { RenderVideo } from "../components/render-video";
 import { RemoteRunnable } from "langchain/runnables/remote";
 
 export async function handler({ messages, data }: { messages: Message[]; data: any }) {
+  // Prompt
+  // console.log("prompt", data.prompt);
+
+  let selectedPrompt = "cv";
+  if (data.prompt === "CV Chat") {
+    selectedPrompt = "cv";
+  } else if (data.prompt === "CV Match") {
+    selectedPrompt = "match";
+  } else if (data.prompt === "Cover Letter") {
+    selectedPrompt = "cover";
+  }
+
   // * Current message
   const currentMessageContent = messages[messages.length - 1].content;
   // console.log("currentMessageContent", currentMessageContent);
 
+  const langServeEndpoint = `${process.env.LANGCHAIN_LANGSERVE_API}/${selectedPrompt}/`;
+  console.log("langServeEndpoint", langServeEndpoint);
   const chain = new RemoteRunnable({
-    url: `${process.env.LANGCHAIN_LANGSERVE_API}`,
+    url: langServeEndpoint,
     options: {
       timeout: 100000,
     },
