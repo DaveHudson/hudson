@@ -40,6 +40,14 @@ export function Chat({ handler }: { handler: any }) {
     <div className="flex justify-center">
       <div className="flex pb-52 !w-full">
         <Messages messages={messages} />
+        {/* <ul>
+          {messages.map((m, index) => (
+            <li key={index}>
+              {m.role === "user" ? "User: " : "AI: "}
+              {m.content}
+            </li>
+          ))}
+        </ul> */}
       </div>
       <br />
       <div className="fixed bottom-0 w-11/12 md:w-1/2 z-10 bg-white dark:bg-slate-900">
