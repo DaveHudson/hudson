@@ -24,7 +24,7 @@ export async function handler({ messages, data }: { messages: Message[]; data: a
   // console.log("currentMessageContent", currentMessageContent);
 
   const langServeEndpoint = `${process.env.LANGCHAIN_LANGSERVE_API}/${selectedPrompt}/`;
-  console.log("langServeEndpoint", langServeEndpoint);
+  // console.log("langServeEndpoint", langServeEndpoint);
   const chain = new RemoteRunnable({
     url: langServeEndpoint,
     options: {
@@ -38,7 +38,7 @@ export async function handler({ messages, data }: { messages: Message[]; data: a
   for await (const chunk of result) {
     if (typeof chunk === "object" && chunk !== null && !Array.isArray(chunk) && !(chunk instanceof Function)) {
       // ! Init of RemoteRunnable ignore JSON object
-      console.log("init RemoteRunnable", chunk);
+      // console.log("init RemoteRunnable", chunk);
     } else {
       lcStream.writer.write(chunk);
     }
