@@ -29,11 +29,19 @@ export async function handler({ messages, data }: { messages: Message[]; data: a
     url: langServeEndpoint,
     options: {
       timeout: 100000,
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": process.env.CV_LANGSERVE_API_KEY,
+      },
     },
   });
 
   const lcStream = LangChainStream();
-  const result = await chain.stream(currentMessageContent);
+  // const result = await chain.stream(currentMessageContent);
+  const result = await chain.stream({
+    chat_history: [],
+    question: currentMessageContent,
+  });
 
   for await (const chunk of result) {
     if (typeof chunk === "object" && chunk !== null && !Array.isArray(chunk) && !(chunk instanceof Function)) {
