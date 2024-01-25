@@ -15,7 +15,7 @@ export const SourceGitHub = ({ source }: { source: SourceGitHubType }) => {
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-5 h-5"
         >
           <path
             stroke-linecap="round"
@@ -27,7 +27,7 @@ export const SourceGitHub = ({ source }: { source: SourceGitHubType }) => {
         <a
           href={`${source.repository}/blob/${source.branch}/${source["source"]}`}
           target="_blank"
-          className="text-blue-300"
+          className="text-sky-300 hover:text-sky-500 text-sm"
         >
           {source["source"]}
         </a>

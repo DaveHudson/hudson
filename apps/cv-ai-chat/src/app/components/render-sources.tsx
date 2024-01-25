@@ -41,7 +41,7 @@ export const RenderSources = ({ data }: { data: JSONValue }) => {
     return (
       <>
         <hr className="mt-4 pb-2" />
-        <h2 className="text-sm pb-2">Sources referenced in this answer</h2>
+        <h2 className="text-sm pb-2">Sources:</h2>
         {/* <pre>{JSON.stringify(uniqueSources, null, 2)}</pre> */}
         {uniqueSources.map((item: BaseSourceType) => {
           return (

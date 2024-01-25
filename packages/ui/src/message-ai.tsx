@@ -10,7 +10,7 @@ export default function MessageAI({ children }: { children: Message }) {
       </div>
 
       <div className="ui-flex ui-w-full ui-flex-col ui-items-start">
-        <div className="ui-w-full">{children.ui}</div>
+        <div className="ui-w-full ui-pb-2">{children.ui}</div>
         <div className="ui-mt-4 ui-flex ui-flex-row ui-justify-start ui-gap-x-2 ui-text-slate-500 lg:ui-mt-0">
           <button className="hover:ui-text-blue-600" type="button">
             <svg
