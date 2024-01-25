@@ -21,7 +21,10 @@ export const RenderContentStream = ({ content }: { content: any }) => {
             ol: ({ node, ...props }) => <ol className="list-decimal" {...props} contentEditable="false" />,
             ul: ({ node, ...props }) => <ul className="list-disc" {...props} contentEditable="false" />,
             li: ({ node, ...props }) => <li className="mt-0 pt-0" {...props} contentEditable="false" />,
-            p: ({ node, ...props }) => <span className="m-0 p-0" {...props} contentEditable="false" />,
+            p: ({ node, ...props }) => <span className="m-0 p-0 pb-4" {...props} contentEditable="false" />,
+            strong: ({ node, ...props }) => (
+              <strong className="dark:text-gray-200" {...props} contentEditable="false" />
+            ),
             code(props) {
               const { children, className, node, ...rest } = props;
               // console.log("className", className);
