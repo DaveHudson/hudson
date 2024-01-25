@@ -24,7 +24,11 @@ export const SourceGitHub = ({ source }: { source: SourceGitHubType }) => {
           />
         </svg>
 
-        <a href={`${source["source"]}`} target="_blank" className="text-blue-300">
+        <a
+          href={`${source.repository}/blob/${source.branch}/${source["source"]}`}
+          target="_blank"
+          className="text-blue-300"
+        >
           {source["source"]}
         </a>
       </div>
