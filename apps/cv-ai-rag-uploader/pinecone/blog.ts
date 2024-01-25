@@ -4,6 +4,7 @@ import { OpenAIEmbeddings } from "@langchain/openai";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { Pinecone } from "@pinecone-database/pinecone";
 import { PineconeStore } from "@langchain/community/vectorstores/pinecone";
+import { v4 as uuidv4 } from "uuid";
 
 const pineconeIndexName = process.env.PINECONE_INDEX_NAME as string;
 const openAIApiKey = process.env.OPENAI_API_KEY as string;
@@ -52,11 +53,14 @@ webPages.forEach(async (webPage) => {
       chunkOverlap: 50,
     });
 
-    const output = await splitter.createDocuments([text]);
-    console.log("Chunks", output.length);
+    const docs = await splitter.createDocuments([text]);
+
+    for (const doc of docs) {
+      doc.metadata = { ...doc.metadata, source: webPage, id: uuidv4(), sourcetype: "blog" };
+    }
 
     // upload chunks to Pinecone
-    await PineconeStore.fromDocuments(output, new OpenAIEmbeddings(), {
+    await PineconeStore.fromDocuments(docs, new OpenAIEmbeddings(), {
       // @ts-expect-error
       pineconeIndex,
       maxConcurrency: 5,

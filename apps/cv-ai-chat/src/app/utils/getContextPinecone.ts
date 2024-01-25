@@ -9,14 +9,19 @@ export function combineDocuments(docs: any[]) {
 }
 
 type DocMetadata = {
+  id: string;
+  sourcetype: string;
+  source: string;
   "loc.lines.form:"?: number;
   "loc.lines.to"?: number;
-  url?: string;
+  respository?: string;
+  branch?: string;
 };
 
 export function document_sources(docs: any[]) {
   const sources: DocMetadata[] = [];
   docs.map((doc) => {
+    // console.log("doc", doc);
     const metadata = doc.metadata as DocMetadata;
     sources.push(metadata);
   });

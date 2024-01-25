@@ -1,57 +1,55 @@
 import { JSONValue } from "ai";
 import invariant from "tiny-invariant";
+import { SourceBlog } from "./source-blog";
+import { SourceMarkdown } from "./source-markdown";
+import { SourceGitHub } from "./source-github";
 
-type Source = {
+export type BaseSourceType = {
+  id: string;
+  sourcetype: string;
+  source: string;
+};
+
+export type SourceMarkdownType = BaseSourceType & {
   "loc.lines.from"?: number;
   "loc.lines.to"?: number;
-  url?: string;
 };
+
+export type SourceGitHubType = BaseSourceType & {
+  branch?: string;
+  repository?: string;
+};
+export type SourceBlogType = BaseSourceType & {};
 
 export const RenderSources = ({ data }: { data: JSONValue }) => {
   invariant(data, "Data must be provided");
+  // console.log("data", data);
   if (typeof data[0] === "object" && data[0] !== null && "sources" in data[0]) {
-    const sources = data[0].sources as Source[];
+    const sources = data[0].sources as BaseSourceType[];
+    // console.log("sources", sources);
+
     const seenUrls = new Set();
     const uniqueSources = sources.filter((source) => {
-      if (seenUrls.has(source.url)) {
+      if (seenUrls.has(source.source)) {
         return false;
       } else {
-        seenUrls.add(source.url);
+        seenUrls.add(source.source);
         return true;
       }
     });
 
     return (
       <>
-        {/* <pre>{JSON.stringify(uniqueSources, null, 2)}</pre> */}
         <hr className="mt-4 pb-2" />
         <h2 className="text-sm pb-2">Sources referenced in this answer</h2>
-        {uniqueSources.map((source, i) => {
+        {/* <pre>{JSON.stringify(uniqueSources, null, 2)}</pre> */}
+        {uniqueSources.map((item: BaseSourceType) => {
           return (
-            <div id={i.toString()} className="space-y-2">
-              {source && (
-                <div className="flex space-x-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
-                    />
-                  </svg>
-
-                  <a href={`${source["url"]}`} target="_blank" className="text-blue-300">
-                    {source["url"]}
-                  </a>
-                </div>
-              )}
-            </div>
+            <>
+              {item.sourcetype === "blog" && <SourceBlog source={item as SourceBlogType} />}
+              {item.sourcetype === "github" && <SourceGitHub source={item as SourceGitHubType} />}
+              {item.sourcetype === "markdown" && <SourceMarkdown source={item as SourceMarkdownType} />}
+            </>
           );
         })}
       </>

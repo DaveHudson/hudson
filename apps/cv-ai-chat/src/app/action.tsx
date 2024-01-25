@@ -54,7 +54,7 @@ export async function handler({ messages, data }: { messages: Message[]; data: a
   });
 
   stream_data.append({ sources: context.sources });
-  console.log("stream_data", stream_data[0]);
+  // console.log("stream_data", stream_data[0]);
 
   // * Respond with the stream
   return new experimental_StreamingReactResponse(stream, {
