@@ -48,7 +48,7 @@ for (const doc of docs) {
   try {
     let text = doc.pageContent;
     let meta = doc.metadata;
-    console.log("source", meta.source);
+    // console.log("source", meta.source);
     const splitter = RecursiveCharacterTextSplitter.fromLanguage("js", {
       chunkSize: 5000,
       separators: ["\n\n", "\n", " ", ""], // default setting (## popular in markdown)

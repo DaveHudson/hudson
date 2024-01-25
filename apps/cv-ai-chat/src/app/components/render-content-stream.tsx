@@ -18,6 +18,10 @@ export const RenderContentStream = ({ content }: { content: any }) => {
             a: ({ node, ...props }) => (
               <a className="text-sky-700 hover:text-sky-500 underline" {...props} contentEditable="false" />
             ),
+            ol: ({ node, ...props }) => <ol className="list-decimal" {...props} contentEditable="false" />,
+            ul: ({ node, ...props }) => <ul className="list-disc" {...props} contentEditable="false" />,
+            li: ({ node, ...props }) => <li className="justify-start" {...props} contentEditable="false" />,
+            p: ({ node, ...props }) => <p className="m-0 p-0" {...props} contentEditable="false" />,
             code(props) {
               const { children, className, node, ...rest } = props;
               // console.log("className", className);

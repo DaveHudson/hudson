@@ -3,7 +3,7 @@ import type { SourceGitHubType } from "./render-sources";
 
 export const SourceGitHub = ({ source }: { source: SourceGitHubType }) => {
   invariant(source, "Source must be provided");
-  console.log("source", source);
+  // console.log("source", source);
   return (
     <div id={source.id} className="space-y-2">
       {/* <pre>{JSON.stringify(source, null, 2)}</pre> */}
@@ -27,7 +27,7 @@ export const SourceGitHub = ({ source }: { source: SourceGitHubType }) => {
         <a
           href={`${source.repository}/blob/${source.branch}/${source["source"]}`}
           target="_blank"
-          className="text-sky-300 hover:text-sky-500 text-sm"
+          className="text-sky-500 hover:text-sky-600 dark:text-sky-300 dark:hover:text-sky-500 text-sm"
         >
           {source["source"]}
         </a>

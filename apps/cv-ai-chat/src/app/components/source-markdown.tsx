@@ -3,7 +3,7 @@ import type { SourceMarkdownType } from "./render-sources";
 
 export const SourceMarkdown = ({ source }: { source: SourceMarkdownType }) => {
   invariant(source, "Source must be provided");
-  console.log("source", source);
+  // console.log("source", source);
   return (
     <div id={source.id} className="space-y-2">
       {/* <pre>{JSON.stringify(source, null, 2)}</pre> */}
