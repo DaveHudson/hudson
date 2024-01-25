@@ -2,7 +2,7 @@ import { extractYouTubeEmbed } from "../utils/extractYouTubeEmbed";
 import { extractJSON } from "../utils/extractJSON";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { shadesOfPurple } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export const RenderContentStream = ({ content }: { content: any }) => {
   // Strip content of any Rich content
@@ -36,10 +36,10 @@ export const RenderContentStream = ({ content }: { content: any }) => {
                   PreTag="div"
                   children={String(children).replace(/\n$/, "")}
                   language={match[1]}
-                  style={vscDarkPlus}
+                  style={shadesOfPurple}
                 />
               ) : (
-                <code {...rest} className={className}>
+                <code {...rest} className={`${className} text-gray-200`}>
                   {children}
                 </code>
               );
