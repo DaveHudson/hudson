@@ -12,7 +12,7 @@ export const RenderContentStream = ({ content }: { content: any }) => {
     const contentWithoutIframe = iframe ? content.replace(iframe, "") : content;
 
     return (
-      <div className="prose dark:text-slate-200">
+      <div className="prose flex flex-col dark:text-slate-200">
         <ReactMarkdown
           components={{
             a: ({ node, ...props }) => (
@@ -20,8 +20,8 @@ export const RenderContentStream = ({ content }: { content: any }) => {
             ),
             ol: ({ node, ...props }) => <ol className="list-decimal" {...props} contentEditable="false" />,
             ul: ({ node, ...props }) => <ul className="list-disc" {...props} contentEditable="false" />,
-            li: ({ node, ...props }) => <li className="justify-start" {...props} contentEditable="false" />,
-            p: ({ node, ...props }) => <p className="m-0 p-0" {...props} contentEditable="false" />,
+            li: ({ node, ...props }) => <li className="mt-0 pt-0" {...props} contentEditable="false" />,
+            p: ({ node, ...props }) => <span className="m-0 p-0" {...props} contentEditable="false" />,
             code(props) {
               const { children, className, node, ...rest } = props;
               // console.log("className", className);
