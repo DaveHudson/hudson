@@ -1,5 +1,6 @@
 "use client";
 
+import { XCircleIcon } from "@heroicons/react/20/solid";
 import { Button } from "@repo/ui/base/button";
 import { Select } from "@repo/ui/catalyst/select";
 import Messages from "@repo/ui/messages";
@@ -12,7 +13,7 @@ import invariant from "tiny-invariant";
 export function Chat({ handler }: { handler: any }) {
   const [prompt, setPrompt] = useState("CV Chat");
   const textareaRef = useRef(null);
-  const { messages, input, handleInputChange, handleSubmit, setInput, isLoading, setMessages } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, setInput, isLoading, setMessages, error } = useChat({
     api: handler,
   });
 
@@ -39,6 +40,23 @@ export function Chat({ handler }: { handler: any }) {
   return (
     <div className="flex justify-center">
       <div className="flex pb-52 !w-full">
+        {error && (
+          <div className="rounded-md bg-red-50 p-4">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+              </div>
+              <div className="ml-3">
+                <h3 className="text-sm font-medium text-red-800">OpenAI Error</h3>
+                <div className="mt-2 text-sm text-red-700">
+                  <ul role="list" className="list-disc space-y-1 pl-5">
+                    <li>{error.message}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         <Messages messages={messages} />
         {/* <ul>
           {messages.map((m, index) => (
