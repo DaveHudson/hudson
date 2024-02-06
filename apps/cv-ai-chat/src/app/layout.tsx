@@ -42,15 +42,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
         </main>
         <aside className="hidden w-0 md:w-2/5 md:block bg-slate-900 border-l-2 overflow-auto">
           <div className="p-6 pr-0 prose space-y-2">
-            <h2 className="text-slate-200">Full-Stack TypeScript AI Engineer</h2>
-            <div className="flex space-x-2 text-sm items-center text-slate-100">
+            <h2 className="text-slate-200">Full-Stack TypeScript Engineer</h2>
+            {/* <div className="flex space-x-2 text-sm items-center text-slate-100">
               <PhoneIcon className="h-5 w-5 inline-block mr-1 -mt-1 stroke-white" />
               <Badge color="sky">
                 <a className="text-sky-300" href="tel:+447700142760">
                   +447700142760
                 </a>
               </Badge>
-            </div>
+            </div> */}
             <div className="flex space-x-2 text-sm items-center text-slate-100">
               <CalendarDaysIcon className="h-5 w-5 inline-block mr-1 -mt-1 stroke-white" />
               <Badge color="sky">{currentAvailability} availability</Badge>
