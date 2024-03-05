@@ -13,7 +13,7 @@ import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 export function Chat() {
   const [prompt, setPrompt] = useState("CV Chat");
   const [messages, setMessages] = useUIState<typeof AI>();
-  const { submitUserMessage } = useActions<typeof AI>();
+  const { submitCVChat, submitCVMatch, submitCoverLetter } = useActions<typeof AI>();
 
   const { formRef, onKeyDown } = useEnterSubmit();
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -94,8 +94,16 @@ export function Chat() {
               },
             ]);
 
-            // submit and get response message
-            const responseMessage = await submitUserMessage(`${value}`);
+            const prompt = formData.get("prompt");
+            let responseMessage;
+            if (prompt === "CV Chat") {
+              responseMessage = await submitCVChat(`${value}`);
+            } else if (prompt === "CV Match") {
+              responseMessage = await submitCVMatch(`${value}`);
+            } else if (prompt === "Cover Letter") {
+              responseMessage = await submitCoverLetter(`${value}`);
+            }
+
             setMessages((currentMessages) => [...currentMessages, responseMessage]);
           }}
         >
@@ -126,7 +134,7 @@ export function Chat() {
                         ]);
 
                         // submit and get response message
-                        const responseMessage = await submitUserMessage(`${button.textContent}`);
+                        const responseMessage = await submitCVChat(`${button.textContent}`);
                         setMessages((currentMessages) => [...currentMessages, responseMessage]);
                       }}
                     >
