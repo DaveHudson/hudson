@@ -13,9 +13,7 @@ import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 export function Chat() {
   const [prompt, setPrompt] = useState("CV Chat");
   const [messages, setMessages] = useUIState<typeof AI>();
-  const { getSourceContext, submitUserMessage } = useActions<typeof AI>();
-  const [sourcesUI, setSourcesUI] = useState<null | React.ReactNode>(null);
-  const [systemUI, setSystemUI] = useState<null | React.ReactNode>(null);
+  const { submitUserMessage } = useActions<typeof AI>();
 
   const { formRef, onKeyDown } = useEnterSubmit();
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -43,20 +41,20 @@ export function Chat() {
           <div>
             {messages.length ? (
               <>
-                {messages.map((message, index) => (
-                  <div key={index} className="pb-4">
-                    {message.display}
-                  </div>
-                ))}
+                {messages.map((message, index) => {
+                  return (
+                    <div key={index} className="pb-4">
+                      {message.display}
+                      <div className="flex flex-col pl-16">{message.sources ? <>{message.sources}</> : null}</div>
+                      <div className="text-center text-sm">
+                        <pre>{message.system}</pre>
+                      </div>
+                    </div>
+                  );
+                })}
               </>
             ) : null}
           </div>
-          <div className="flex flex-col pl-16">{sourcesUI ? <>{sourcesUI}</> : null}</div>
-          {systemUI ? (
-            <div className="text-center text-sm">
-              <pre>{systemUI}</pre>
-            </div>
-          ) : null}
         </div>
       </div>
       <br />
@@ -91,17 +89,14 @@ export function Chat() {
               {
                 id: Date.now(),
                 display: <MessageUser>{`${value}`}</MessageUser>,
+                sources: null, // Add sources property
+                system: null, // Add system property
               },
             ]);
 
             // submit and get response message
             const responseMessage = await submitUserMessage(`${value}`);
             setMessages((currentMessages) => [...currentMessages, responseMessage]);
-
-            // submit and get sources & system UI
-            const responseSources = await getSourceContext(`${value}`);
-            setSourcesUI(responseSources.sourcesUI);
-            setSystemUI(responseSources.systemUI);
           }}
         >
           <div className="flex flex-col items-center rounded-md">
@@ -113,6 +108,8 @@ export function Chat() {
                       className="mb-2"
                       variant="outline"
                       size="sm"
+                      name="suggested_prompt"
+                      value={prompt}
                       key={prompt}
                       onClick={async (e) => {
                         e.preventDefault();
@@ -123,17 +120,14 @@ export function Chat() {
                           {
                             id: Date.now(),
                             display: <MessageUser>{`${button.textContent}`}</MessageUser>,
+                            sources: null, // Add sources property
+                            system: null, // Add system property
                           },
                         ]);
 
                         // submit and get response message
                         const responseMessage = await submitUserMessage(`${button.textContent}`);
                         setMessages((currentMessages) => [...currentMessages, responseMessage]);
-
-                        // submit and get sources & system UI
-                        const responseSources = await getSourceContext(`${button.textContent}`);
-                        setSourcesUI(responseSources.sourcesUI);
-                        setSystemUI(responseSources.systemUI);
                       }}
                     >
                       {prompt}

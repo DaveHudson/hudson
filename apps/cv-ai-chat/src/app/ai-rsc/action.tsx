@@ -11,52 +11,10 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
 });
 
-async function getSourceContext(content: string) {
-  "use server";
-
-  const aiState = getMutableAIState();
-
-  const asking = createStreamableUI(<div>Fetching sources..</div>);
-  const systemMessage = createStreamableUI(null);
-
-  // This async function is immediately invoked but it will not block the
-  // return statement. Because of that, the client will receive the initial
-  // UI immediately and then the updates will be streamed later.
-  (async () => {
-    asking.update(<div>Consolidating sources...</div>);
-
-    const responseSources = await getContextPinecone(content);
-
-    const data = [{ sources: responseSources.sources }];
-
-    asking.done(<RenderSources data={data} />);
-
-    systemMessage.done(<div>system is done</div>);
-
-    aiState.done([
-      ...aiState.get(),
-      {
-        role: "system",
-        content: `got your answer i think...`,
-      },
-    ]);
-  })();
-
-  return {
-    sourcesUI: asking.value,
-    systemUI: systemMessage.value,
-    newMessage: {
-      id: Date.now(),
-      display: systemMessage.value,
-    },
-  };
-}
-
 async function submitUserMessage(content: string) {
   "use server";
 
   const aiState = getMutableAIState();
-  console.log("initialAIState", aiState.get());
   aiState.update([
     ...aiState.get(),
     {
@@ -126,9 +84,31 @@ async function submitUserMessage(content: string) {
     // },
   });
 
+  const sources = createStreamableUI(<div>Fetching sources..</div>);
+  const systemMessage = createStreamableUI(null);
+
+  // This async function is immediately invoked but it will not block the
+  // return statement. Because of that, the client will receive the initial
+  // UI immediately and then the updates will be streamed later.
+  (async () => {
+    sources.update(<div>Consolidating sources...</div>);
+
+    const responseSources = await getContextPinecone(content);
+
+    const data = [{ sources: responseSources.sources }];
+
+    sources.done(<RenderSources data={data} />);
+
+    systemMessage.done(<>system is done</>);
+
+    aiState.done([...aiState.get()]);
+  })();
+
   return {
     id: Date.now(),
     display: ui,
+    sources: sources.value,
+    system: systemMessage.value,
   };
 }
 
@@ -142,11 +122,12 @@ const initialAIState: {
 const initialUIState: {
   id: number;
   display: React.ReactNode;
+  sources: React.ReactNode;
+  system: React.ReactNode;
 }[] = [];
 
 export const AI = createAI({
   actions: {
-    getSourceContext,
     submitUserMessage,
   },
   initialUIState,
