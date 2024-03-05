@@ -9,6 +9,7 @@ import MessageUser from "@repo/ui/message-user";
 import { useEnterSubmit } from "../utils/hooks/use-enter-submit";
 import Textarea from "react-textarea-autosize";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
+import { ChatScrollAnchor } from "../utils/hooks/chat-scroll-anchor";
 
 export function Chat() {
   const [prompt, setPrompt] = useState("CV Chat");
@@ -33,9 +34,9 @@ export function Chat() {
 
   return (
     <div className="flex justify-center">
-      <div className="flex flex-col pb-52 !w-full">
-        <div className="flex-1 space-y-2 overflow-y-auto leading-6 sm:text-base sm:leading-7">
-          <div className="flex w-full justify-center">
+      <div className="flex flex-col !w-full">
+        <div className="flex-1 space-y-2 overflow-y-auto leading-6 sm:text-base sm:leading-7 ">
+          <div className="flex w-full justify-center mt-4">
             <ChatBubbleLeftRightIcon className="h-10 w-10 stroke-2 stroke-sky-600" aria-hidden="true" />
           </div>
           <div>
@@ -55,6 +56,7 @@ export function Chat() {
               </>
             ) : null}
           </div>
+          <ChatScrollAnchor trackVisibility={true} />
         </div>
       </div>
       <br />

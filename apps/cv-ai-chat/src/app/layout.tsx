@@ -24,7 +24,7 @@ import { Badge } from "@repo/ui/catalyst/badge";
 import { currentAvailability } from "./utils/availability";
 import { languages } from "./utils/languages";
 import { Analytics } from "@vercel/analytics/react";
-import { PhoneIcon, CalendarDaysIcon } from "@heroicons/react/24/outline";
+import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
   return (
     <html className="h-full" lang="en">
       <body className={`${inter.className} h-full flex flex-row !dark:bg-slate-100`}>
-        <main className="py-10 w-full md:w-3/5 overflow-auto">
+        <main className="w-full md:w-3/5 overflow-y-scroll">
           <div className="px-4 sm:px-6 lg:px-8">{children}</div>
         </main>
         <aside className="hidden w-0 md:w-2/5 md:block bg-slate-900 border-l-2 overflow-auto">
