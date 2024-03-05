@@ -8,6 +8,7 @@ import { AI } from "./action";
 import MessageUser from "@repo/ui/message-user";
 import { useEnterSubmit } from "../utils/hooks/use-enter-submit";
 import Textarea from "react-textarea-autosize";
+import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 
 export function Chat() {
   const [prompt, setPrompt] = useState("CV Chat");
@@ -35,25 +36,28 @@ export function Chat() {
   return (
     <div className="flex justify-center">
       <div className="flex flex-col pb-52 !w-full">
-        {messages.length ? (
-          <div className="flex flex-col">
-            {messages.map((message, index) => (
-              <div key={index} className="pb-4">
-                {message.display}
-              </div>
-            ))}
+        <div className="flex-1 space-y-2 overflow-y-auto leading-6 sm:text-base sm:leading-7">
+          <div className="flex w-full justify-center">
+            <ChatBubbleLeftRightIcon className="h-10 w-10 stroke-2 stroke-sky-600" aria-hidden="true" />
           </div>
-        ) : null}
-        {sourcesUI ? (
-          <>
-            <div>{sourcesUI}</div>
-          </>
-        ) : null}
-        {systemUI ? (
-          <>
-            <div>{systemUI}</div>
-          </>
-        ) : null}
+          <div>
+            {messages.length ? (
+              <>
+                {messages.map((message, index) => (
+                  <div key={index} className="pb-4">
+                    {message.display}
+                  </div>
+                ))}
+              </>
+            ) : null}
+          </div>
+          <div className="flex flex-col pl-16">{sourcesUI ? <>{sourcesUI}</> : null}</div>
+          {systemUI ? (
+            <div className="text-center text-sm">
+              <pre>{systemUI}</pre>
+            </div>
+          ) : null}
+        </div>
       </div>
       <br />
       <div className="fixed bottom-0 w-11/12 md:w-1/2 z-10 bg-white dark:bg-slate-900">
