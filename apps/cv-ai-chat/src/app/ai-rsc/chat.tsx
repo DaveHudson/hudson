@@ -143,7 +143,7 @@ export function Chat() {
               </div>
             )}
 
-            <div className="flex flex-col w-full pt-2 pb-2 md:pb-12 md:space-x-2 space-y-2">
+            <div className="flex flex-col w-full pt-2 pb-2 md:pb-12  space-y-2">
               <div className="flex items-center">
                 <label htmlFor="prompt" className="block text-sm font-medium leading-6 text-gray-900 sr-only">
                   Prompt
@@ -160,21 +160,46 @@ export function Chat() {
                   <option>Cover Letter</option>
                 </Select>
               </div>
-              <Textarea
-                ref={inputRef}
-                tabIndex={0}
-                onKeyDown={onKeyDown}
-                placeholder="Send a message."
-                className="min-h-[60px] w-full resize-none bg-transparent px-4 py-[1.3rem] focus-within:outline-none sm:text-sm"
-                autoFocus
-                spellCheck={false}
-                autoComplete="off"
-                autoCorrect="off"
-                name="message"
-                rows={1}
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-              />
+              <div className="flex flex-row w-full">
+                <Textarea
+                  ref={inputRef}
+                  tabIndex={0}
+                  onKeyDown={onKeyDown}
+                  placeholder="Send a message."
+                  className="min-h-[44px] w-full ml-4 resize-none bg-transparent px-4 py-[1.3rem] focus-within:outline-none block rounded-md border-0 dark:bg-gray-900 text-gray-900 dark:text-gray-300 shadow-sm ring-1 ring-inset ring-sky-700 dark:ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6 disabled:bg-slate-100 dark:disabled:bg-slate-700"
+                  autoFocus
+                  spellCheck={false}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  name="message"
+                  rows={1}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                />{" "}
+                <div className="flex items-center">
+                  <button
+                    className="inline-flex hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-600 sm:p-2"
+                    type="submit"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="h-6 w-6"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M0 0h24v24H0z" fill="none" stroke="none" />
+                      <path d="M10 14l11 -11" />
+                      <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" />
+                    </svg>
+                    <span className="sr-only">Send message</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </form>
