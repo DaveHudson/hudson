@@ -1,9 +1,8 @@
 "use client";
-import { Message } from "ai";
 import { Avatar } from "./catalyst/avatar";
 import profile from "./profile.jpg";
 
-export default function MessageAI({ children }: { children: Message }) {
+export default function MessageAIRSC({ children }: { children: string }) {
   return (
     <div className="ui-flex">
       <div className="ui-flex ui-flex-row ui-px-4 ui-y-1">
@@ -11,7 +10,7 @@ export default function MessageAI({ children }: { children: Message }) {
       </div>
 
       <div className="ui-flex ui-w-full ui-flex-col ui-items-start">
-        <div className="ui-w-full ui-pb-2">{children.ui}</div>
+        <div className="ui-w-full ui-pb-2">{children}</div>
         <div className="ui-mt-4 ui-flex ui-flex-row ui-justify-start ui-gap-x-2 ui-text-slate-500 lg:ui-mt-0">
           <button className="hover:ui-text-sky-500" type="button">
             <svg
@@ -47,7 +46,7 @@ export default function MessageAI({ children }: { children: Message }) {
             className="hover:ui-text-sky-500"
             onClick={() => {
               console.log(children);
-              navigator.clipboard.writeText(`${children.content}`).then(
+              navigator.clipboard.writeText(`${children}`).then(
                 () => {
                   console.log("Copying to clipboard was successful!");
                 },

@@ -3,7 +3,7 @@ import "server-only";
 import { OpenAI } from "openai";
 import { createAI, createStreamableUI, getMutableAIState, render } from "ai/rsc";
 import { getContextPinecone } from "../utils/getContextPinecone";
-import MessageAI from "@repo/ui/message-ai";
+import MessageAIRSC from "@repo/ui/message-ai-rsc";
 
 import { RenderSources } from "../components/render-sources";
 
@@ -96,7 +96,7 @@ async function submitUserMessage(content: string) {
         ]);
       }
 
-      return <MessageAI>{content}</MessageAI>;
+      return <MessageAIRSC>{content}</MessageAIRSC>;
     },
     // tools: {
     //   getContextPinecone: {

@@ -11,6 +11,7 @@
     "./prompt-input": "./src/prompt-input.tsx",
     "./messages": "./src/messages.tsx",
     "./message-ai": "./src/message-ai.tsx",
+    "./message-ai-rsc": "./src/message-ai-rsc.tsx",
     "./message-user": "./src/message-user.tsx",
     "./spinner": "./src/spinner.tsx",
     "./ratios": "./src/ratios.tsx",
