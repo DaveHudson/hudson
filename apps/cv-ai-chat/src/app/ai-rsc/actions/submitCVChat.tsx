@@ -8,6 +8,8 @@ import { RenderSources } from "../../components/render-sources";
 import { languages } from "../../utils/languages";
 import { currentAvailability } from "../../utils/availability";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
+import { runOpenAICompletion } from "../../utils";
+import { z } from "zod";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
@@ -27,6 +29,8 @@ export async function submitCVChat(content: string) {
 
   const systemMessage = createStreamableUI(<div>Starting query...</div>);
   systemMessage.update(<div>Consolidating query...</div>);
+
+  const uiReply = createStreamableUI(<div>Fetching AI reply...</div>);
 
   const context = await getContextPinecone(content);
 
@@ -52,49 +56,31 @@ export async function submitCVChat(content: string) {
     },
   ] as ChatCompletionMessageParam[];
 
-  const ui = render({
+  const completion = runOpenAICompletion(openai, {
     model: "gpt-3.5-turbo",
-    provider: openai,
     messages,
-    text: ({ content, done }) => {
-      if (done) {
-        aiState.done([
-          ...aiState.get(),
-          {
-            role: "assistant",
-            content,
-          },
-        ]);
-      }
+    functions: [
+      {
+        name: "getContextPinecone",
+        description: "Get context from Pinecone",
+        parameters: z
+          .object({
+            message: z.string().describe("user input message to get context for"),
+          })
+          .required(),
+      },
+    ],
+    temperature: 0,
+  });
 
-      return <MessageAIRSC>{content}</MessageAIRSC>;
-    },
-    // tools: {
-    //   getContextPinecone: {
-    //     description: "Get context from Pinecone",
-    //     parameters: z
-    //       .object({
-    //         message: z.string().describe("user input message to get context for"),
-    //       })
-    //       .required(),
-    //     render: async function* (message) {
-    //       console.log("render with", message);
-    //       yield <div>Getting Pinecone context</div>;
-    //       const response = await getContextPinecone(message.toString());
+  completion.onTextContent((content: string, isFinal: boolean) => {
+    uiReply.update(<MessageAIRSC>{content}</MessageAIRSC>);
 
-    //       aiState.done([
-    //         ...aiState.get(),
-    //         {
-    //           role: "function",
-    //           name: "getContextPinecone",
-    //           content: JSON.stringify(response),
-    //         },
-    //       ]);
-
-    //       return <pre>{JSON.stringify(response, null, 2)}</pre>;
-    //     },
-    //   },
-    // },
+    if (isFinal) {
+      uiReply.done();
+      systemMessage.done(<>system is done</>);
+      aiState.done([...aiState.get(), { role: "assistant", content }]);
+    }
   });
 
   const sources = createStreamableUI(<div>Fetching sources..</div>);
@@ -111,14 +97,12 @@ export async function submitCVChat(content: string) {
 
     sources.done(<RenderSources data={data} />);
 
-    systemMessage.done(<>system is done</>);
-
     aiState.done([...aiState.get()]);
   })();
 
   return {
     id: Date.now(),
-    display: ui,
+    display: uiReply.value,
     sources: sources.value,
     system: systemMessage.value,
   };
