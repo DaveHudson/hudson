@@ -2,7 +2,7 @@
 import { Avatar } from "./catalyst/avatar";
 import profile from "./profile.jpg";
 
-export default function MessageAIRSC({ children }: { children: string }) {
+export default function MessageAIRSC({ children }: { children: string | JSX.Element }) {
   return (
     <div className="ui-flex">
       <div className="ui-flex ui-flex-row ui-px-4 ui-y-1">

@@ -47,9 +47,9 @@ export function Chat() {
                     <div key={index} className="pb-4">
                       {message.display}
                       <div className="flex flex-col pl-16">{message.sources ? <>{message.sources}</> : null}</div>
-                      <div className="text-center text-sm">
+                      {/* <div className="text-center text-sm">
                         <pre>{message.system}</pre>
-                      </div>
+                      </div> */}
                     </div>
                   );
                 })}
@@ -131,7 +131,7 @@ export function Chat() {
                             id: Date.now(),
                             display: <MessageUser>{`${button.textContent}`}</MessageUser>,
                             sources: null, // Add sources property
-                            system: null, // Add system property
+                            // system: null, // Add system property
                           },
                         ]);
 

@@ -23,6 +23,8 @@
     "./chat/message-user": "./src/chat/message-user.tsx",
     "./chat/messages": "./src/chat/messages.tsx",
     "./chat/prompt-input": "./src/chat/prompt-input.tsx",
+    "./chat/things-love": "./src/chat/things-love.tsx",
+    "./chat/ai-card": "./src/chat/ai-card.tsx",
     "./nav/header": "./src/nav/header.tsx",
     "./nav/nav-desktop": "./src/nav/nav-desktop.tsx",
     "./nav/nav-mobile": "./src/nav/nav-mobile.tsx",
@@ -92,6 +94,7 @@
     "@types/react-syntax-highlighter": "^15.5.11",
     "ai": "^2.2.30",
     "clsx": "^2.0.0",
+    "framer-motion": "^11.0.10",
     "react-syntax-highlighter": "^15.5.0",
     "tailwind-merge": "^2.1.0",
     "tiny-invariant": "^1.3.1"

@@ -16,7 +16,7 @@ const initialUIState: {
   id: number;
   display: React.ReactNode;
   sources: React.ReactNode;
-  system: React.ReactNode;
+  // system: React.ReactNode;
 }[] = [];
 
 export const AI = createAI({
