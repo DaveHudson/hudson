@@ -2046,6 +2046,10 @@ select {
   stroke: #71717a;
 }
 
+.ui-stroke-purple-600 {
+  stroke: #9333ea;
+}
+
 .ui-stroke-2 {
   stroke-width: 2;
 }

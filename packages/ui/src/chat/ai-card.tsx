@@ -20,7 +20,13 @@ export function AICard({ children, done }: { children: string | JSX.Element; don
       <div className="ui-flex ui-space-x-2">
         {!done ? (
           <div className="ui-flex ui-justify-center ui-items-center">
-            <Sparkles className="ui-h-5" />
+            <motion.div
+              initial={{ scale: 1.0 }}
+              animate={{ scale: 0.8 }}
+              transition={{ repeat: Infinity, repeatType: "reverse", duration: 0.5 }}
+            >
+              <Sparkles className="ui-h-5 ui-stroke-purple-600" />
+            </motion.div>
           </div>
         ) : null}
         <motion.div
