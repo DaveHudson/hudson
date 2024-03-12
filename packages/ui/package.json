@@ -25,6 +25,7 @@
     "./chat/prompt-input": "./src/chat/prompt-input.tsx",
     "./chat/things-love": "./src/chat/things-love.tsx",
     "./chat/ai-card": "./src/chat/ai-card.tsx",
+    "./chat/availability": "./src/chat/availability.tsx",
     "./nav/header": "./src/nav/header.tsx",
     "./nav/nav-desktop": "./src/nav/nav-desktop.tsx",
     "./nav/nav-mobile": "./src/nav/nav-mobile.tsx",

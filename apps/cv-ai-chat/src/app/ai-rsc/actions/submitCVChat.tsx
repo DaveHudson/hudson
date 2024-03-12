@@ -2,6 +2,7 @@
 
 import MessageAIRSC from "@repo/ui/message-ai-rsc";
 import { ThingsLove } from "@repo/ui/chat/things-love";
+import { Availability } from "@repo/ui/chat/availability";
 import { AICard } from "@repo/ui/chat/ai-card";
 import { createStreamableUI, getMutableAIState, render } from "ai/rsc";
 import OpenAI from "openai";
@@ -34,7 +35,7 @@ export async function submitCVChat(content: string) {
 
   const uiReply = createStreamableUI(
     <MessageAIRSC>
-      <AICard>Fetching AI reply...</AICard>
+      <AICard>Searching Vector Database..</AICard>
     </MessageAIRSC>
   );
 
@@ -52,8 +53,7 @@ export async function submitCVChat(content: string) {
   
   If a question is asked that cannot be answered based on the context, respond with "I'm sorry, I don't have any views on that topic yet. Please feel free to email me at dave@applification.net for further discussion."
   
-  If the user enquires about availability, call \`getDaveAvailability\`.
-  If the user enquires about a full time job, call \`getDaveJobStatus\`.
+  If the user enquires about job status or availability, call \`getDaveAvailability\`.
   If the user enquires about a specific programming language, then call \`getProgrammingLanguages\` passing in the language as a parameter.
   If the user enquires about things Dave loves, then call \`getThingsLove\` passing in the things Dave loves as a parameter.
 
@@ -83,15 +83,6 @@ export async function submitCVChat(content: string) {
         parameters: z
           .object({
             message: z.string().describe("message about current availability"),
-          })
-          .required(),
-      },
-      {
-        name: "getDaveJobStatus",
-        description: "Get current job status",
-        parameters: z
-          .object({
-            message: z.string().describe("message about current job status"),
           })
           .required(),
       },
@@ -131,6 +122,8 @@ export async function submitCVChat(content: string) {
   });
 
   completion.onTextContent((content: string, isFinal: boolean) => {
+    sleep(1500);
+
     uiReply.update(<MessageAIRSC>{content}</MessageAIRSC>);
 
     if (isFinal) {
@@ -141,27 +134,25 @@ export async function submitCVChat(content: string) {
   });
 
   completion.onFunctionCall("getDaveAvailability", async () => {
-    uiReply.update(<div>Getting current availability</div>);
+    uiReply.update(
+      <MessageAIRSC>
+        <AICard>Requesting contract status...</AICard>
+      </MessageAIRSC>
+    );
 
     await sleep(1500);
 
     const message = `Dave's current availability for work is ${currentAvailability}`;
 
-    uiReply.done(<div className="bg-pink-300 p-4">{message}</div>);
+    uiReply.done(
+      <MessageAIRSC>
+        <AICard done>
+          <Availability status={currentAvailability} />
+        </AICard>
+      </MessageAIRSC>
+    );
 
     aiState.done([...aiState.get(), { role: "assistant", name: "getCurrentAvailability", content: message }]);
-  });
-
-  completion.onFunctionCall("getDaveJobStatus", async () => {
-    uiReply.update(<div>Getting current job status</div>);
-
-    await sleep(1500);
-
-    const message = `I am an I.T contractor operating outside of IR35, full-time employment is not of interest to me at this time.`;
-
-    uiReply.done(<div className="bg-blue-300 p-4">{message}</div>);
-
-    aiState.done([...aiState.get(), { role: "assistant", name: "getCurrentJobStatus", content: message }]);
   });
 
   completion.onFunctionCall("getProgrammingLanguages", async ({ programmingLanguage }) => {
@@ -206,7 +197,11 @@ export async function submitCVChat(content: string) {
   });
 
   completion.onFunctionCall("show_YouTube_video", async ({ videoId }) => {
-    uiReply.update(<div>Fetching YouTube video...</div>);
+    uiReply.update(
+      <MessageAIRSC>
+        <AICard>Fetching YouTube video...</AICard>
+      </MessageAIRSC>
+    );
 
     await sleep(1000);
 
