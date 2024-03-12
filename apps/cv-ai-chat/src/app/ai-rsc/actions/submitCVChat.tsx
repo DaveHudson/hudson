@@ -156,7 +156,13 @@ export async function submitCVChat(content: string) {
   });
 
   completion.onFunctionCall("getProgrammingLanguages", async ({ programmingLanguage }) => {
-    uiReply.update(<div>Getting programming languages</div>);
+    await sleep(1000);
+
+    uiReply.update(
+      <MessageAIRSC>
+        <AICard>Getting programming languages...</AICard>
+      </MessageAIRSC>
+    );
 
     await sleep(1500);
 
@@ -168,7 +174,7 @@ export async function submitCVChat(content: string) {
       message = `I'm sorry, I don't have any experience with ${programmingLanguage}.`;
     }
 
-    uiReply.done(<div className="bg-green-300 p-4">{message}</div>);
+    uiReply.done(<MessageAIRSC>{message}</MessageAIRSC>);
     aiState.done([...aiState.get(), { role: "assistant", name: "getProgrammingLanguages", content: message }]);
   });
 
