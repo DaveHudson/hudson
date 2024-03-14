@@ -13,12 +13,31 @@ export function ChatScrollAnchor({ trackVisibility }: ChatScrollAnchorProps) {
   const { ref, entry, inView } = useInView({
     trackVisibility,
     delay: 100,
-    rootMargin: "0px 0px 0px 0px",
+    rootMargin: "0px 0px -150px 0px",
     threshold: 0,
   });
 
+  const [isMoving, setIsMoving] = React.useState(false);
+  let timerId: NodeJS.Timeout;
+
+  const handleMouseMove = () => {
+    if (!isMoving) setIsMoving(true);
+    clearTimeout(timerId);
+    timerId = setTimeout(() => setIsMoving(false), 100); // 1 second of inactivity
+  };
+
   React.useEffect(() => {
-    if (isAtBottom && trackVisibility && !inView) {
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("wheel", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("wheel", handleMouseMove);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (isAtBottom && trackVisibility && !inView && !isMoving) {
       entry?.target.scrollIntoView({
         block: "start",
       });
@@ -26,9 +45,8 @@ export function ChatScrollAnchor({ trackVisibility }: ChatScrollAnchorProps) {
   }, [inView, entry, trackVisibility, isAtBottom]);
 
   return (
-    <div className="flex flex-col justify-end">
-      <div className="h-60">&nbsp;</div>
-      <div ref={ref} className="h-px w-full" />
+    <div ref={ref} className="h-[240px] w-full">
+      {/* <div>{`Header inside viewport ${inView}. isAtBottom: ${isAtBottom} isMoving: ${isMoving}`}</div> */}
     </div>
   );
 }

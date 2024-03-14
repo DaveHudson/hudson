@@ -36,9 +36,9 @@ export function Chat() {
   ];
 
   return (
-    <div className="flex justify-center">
-      <div className="flex flex-col !w-full">
-        <div className="flex-1 space-y-2 overflow-y-auto leading-6 sm:text-base sm:leading-7 ">
+    <div className="flex justify-center h-screen">
+      <div className="flex flex-col w-full overflow-scroll px-4 sm:px-6 lg:px-8 ">
+        <div className="flex-1 space-y-2 leading-6 sm:text-base sm:leading-7">
           <div className="flex w-full justify-center mt-4">
             <ChatBubbleLeftRightIcon className="h-10 w-10 stroke-2 stroke-sky-600" aria-hidden="true" />
           </div>
@@ -95,7 +95,7 @@ export function Chat() {
                 id: Date.now(),
                 display: <MessageUser>{`${value}`}</MessageUser>,
                 sources: null, // Add sources property
-                system: null, // Add system property
+                // system: null, // Add system property
               },
             ]);
 

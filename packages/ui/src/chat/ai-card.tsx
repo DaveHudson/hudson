@@ -8,7 +8,6 @@ export function AICard({ children, done }: { children: string | JSX.Element; don
     <div
       className={clsx(
         "ui-rounded-lg",
-        "ui-bg-white",
         "ui-p-2",
         "ui-p-2",
         "ui-text-sm",
