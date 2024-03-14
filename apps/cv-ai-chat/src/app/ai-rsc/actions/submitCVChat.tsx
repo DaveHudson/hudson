@@ -69,7 +69,7 @@ export async function submitCVChat(content: string) {
   ] as ChatCompletionMessageParam[];
 
   const completion = runOpenAICompletion(openai, {
-    model: "gpt-3.5-turbo",
+    model: "gpt-3.5-turbo-0125",
     messages,
     functions: [
       {

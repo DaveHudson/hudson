@@ -21,18 +21,10 @@ import { Badge } from "@repo/ui/catalyst/badge";
 import { currentAvailability } from "../utils/availability";
 import { languages } from "../utils/languages";
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
 
 export function Aside() {
-  const [scrollTop, setScrollTop] = useState(0);
-
-  const handleScroll = (event) => {
-    setScrollTop(event.currentTarget.scrollTop);
-  };
-
   return (
-    <div className="p-6 pr-0 prose space-y-2 h-screen overflow-scroll" onScroll={handleScroll}>
-      Scroll top: <b>{scrollTop}</b>
+    <div className="p-6 pr-0 prose space-y-2 h-screen overflow-scroll">
       <h2 className="text-slate-200">Full-Stack TypeScript Engineer</h2>
       {/* <div className="flex space-x-2 text-sm items-center text-slate-100">
       <PhoneIcon className="h-5 w-5 inline-block mr-1 -mt-1 stroke-white" />
