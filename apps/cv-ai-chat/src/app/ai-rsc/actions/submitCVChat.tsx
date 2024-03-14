@@ -13,6 +13,7 @@ import { currentAvailability } from "../../utils/availability";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import { runOpenAICompletion, sleep } from "../../utils";
 import { z } from "zod";
+import { RenderContentStream } from "../../components/render-content-stream";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
@@ -69,7 +70,7 @@ export async function submitCVChat(content: string) {
   ] as ChatCompletionMessageParam[];
 
   const completion = runOpenAICompletion(openai, {
-    model: "gpt-3.5-turbo-0125",
+    model: process.env.NODE_ENV === "production" ? "gpt-4" : "gpt-3.5-turbo",
     messages,
     functions: [
       {
@@ -124,7 +125,11 @@ export async function submitCVChat(content: string) {
   completion.onTextContent((content: string, isFinal: boolean) => {
     sleep(1500);
 
-    uiReply.update(<MessageAIRSC>{content}</MessageAIRSC>);
+    uiReply.update(
+      <MessageAIRSC>
+        <RenderContentStream content={content} />
+      </MessageAIRSC>
+    );
 
     if (isFinal) {
       uiReply.done();
@@ -232,6 +237,7 @@ export async function submitCVChat(content: string) {
   // This async function is immediately invoked but it will not block the
   // return statement. Because of that, the client will receive the initial
   // UI immediately and then the updates will be streamed later.
+
   (async () => {
     sources.update(<div>Consolidating sources...</div>);
 
