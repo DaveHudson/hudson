@@ -30,7 +30,6 @@ export function Chat() {
     "What is your contract status?",
     "Tell me some things you love",
     "What experience do you have with React?",
-    "Do you have any experience with C++?",
     "What is your opinion of Redux?",
     "Do you have any views on component composition in React?",
   ];

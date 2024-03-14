@@ -13,7 +13,7 @@ export function AICard({ children, done }: { children: string | JSX.Element; don
         "ui-text-sm",
         "ui-text-muted-foreground",
         "ui-overflow-hidden",
-        !done ? "ui-border ui-border-slate-200 ui-shadow-sm" : "ui-pl-0"
+        !done ? "ui-border ui-border-slate-200 dark:ui-border-slate-600 ui-shadow-sm" : "ui-pl-0"
       )}
     >
       <div className="ui-flex ui-space-x-2">
