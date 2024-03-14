@@ -3,6 +3,7 @@ import clsx from "clsx";
 import React from "react";
 import { TouchTarget } from "./button";
 import { Link } from "./link";
+import Image from "next/image";
 
 type AvatarProps = {
   src?: string | null;
@@ -46,7 +47,7 @@ export function Avatar({
           </text>
         </svg>
       )}
-      {src && <img src={src} alt={alt} />}
+      {src && <Image src={src} alt={alt} width="30" height="30" />}
       {/* Add an inset border that sits on top of the image */}
       <span
         className="ui-ring-1 ui-ring-inset ui-ring-black/5 dark:ui-ring-white/5 forced-colors:ui-outline"
