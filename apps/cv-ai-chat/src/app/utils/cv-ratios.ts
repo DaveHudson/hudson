@@ -1,3 +1,14 @@
+export const EruptivRatios = [
+  {
+    label: "Web",
+    value: 80,
+  },
+  {
+    label: "Design",
+    value: 20,
+  },
+];
+
 export const AIEngineerRatios = [
   {
     label: "Web",
