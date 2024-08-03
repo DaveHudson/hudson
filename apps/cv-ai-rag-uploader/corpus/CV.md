@@ -15,6 +15,24 @@ Figma • HTML • CSS • React • XState • Redux • Tailwind CSS • Shadc
 
 ## Experience
 
+### Front-end Engineer • Eruptiv
+
+Recruitment SASS Platform • Contract Remote, Leicester • Mar 2024 - Aug 2024
+
+Greenfield build of bespoke marketing website template for Eruptiv SASS Platform.
+
+orked with design team translate Figma design assets into interactive HTML/CSS website
+
+Greenfield Next.js architecture using App Router with React Server Components & Server Actions
+
+Component driven development approach - implemented a design system of UI components with Tailwind & Shadcn/UI in Storybook
+
+Bespoke content management integraton within Eruptiv Portal
+
+Web (80%) Design (20%)
+
+TypeScript • Next.js • Tailwind CSS • Shadcn/UI • Storybook • REST • API • Zod • Vercel • Figma • SVG
+
 ### AI Engineer • Applification
 
 AITech • Nov 2023 - Present

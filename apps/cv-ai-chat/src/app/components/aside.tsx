@@ -2,6 +2,7 @@
 import {
   AIEngineerRatios,
   EntForumRatios,
+  EruptivRatios,
   HMRCRatios,
   PandoAccessRatios,
   PandoAdminRatios,
@@ -39,6 +40,9 @@ export function Aside() {
         <Badge color="sky">{currentAvailability} availability</Badge>
       </div>
       <Divider text="Experience" />
+      <h3 className="prose-em text-gray-300 mt-0 mb-0">Senior Front-End Engineer • Eruptiv</h3>
+      <RoleSummary text="Greenfield bespoke marketing website template for Eruptiv SASS Platform" />
+      <Ratios ratios={EruptivRatios} />
       <h3 className="prose-em text-gray-300 mt-0 mb-0">AI Engineer • Applification</h3>
       <RoleSummary text="Open-source AI Engineer" />
       <Ratios ratios={AIEngineerRatios} />
