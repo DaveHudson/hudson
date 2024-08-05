@@ -30,7 +30,9 @@ export function Chat({ handler }: { handler: any }) {
   }, [isLoading]);
 
   const prompts = [
+    "What did you do at Eruptiv?",
     "What did you do at Peppy?",
+    "Do you have any experience with Next.js?",
     "What did you do at Pando?",
     "What experience do you have with React?",
     "What is your opinion of Redux?",

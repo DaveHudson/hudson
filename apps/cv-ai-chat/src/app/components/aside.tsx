@@ -25,7 +25,7 @@ import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 
 export function Aside() {
   return (
-    <div className="p-6 pr-0 prose space-y-2 h-screen overflow-scroll">
+    <div className="p-6 pr-6 space-y-2 h-screen overflow-y-scroll float-right">
       <h2 className="text-slate-200">Full-Stack TypeScript Engineer</h2>
       {/* <div className="flex space-x-2 text-sm items-center text-slate-100">
       <PhoneIcon className="h-5 w-5 inline-block mr-1 -mt-1 stroke-white" />
